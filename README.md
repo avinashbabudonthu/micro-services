@@ -12,6 +12,12 @@
 * Building Microservices REST APIs Using Spring Data REST
 * Foundations for Cloud Architecture
 
+## Udemy
+* Master Microservices with Spring Boot and Spring Cloud
+* Microservices with Spring Cloud
+* Microservices Software Architecture: Patterns and Techniques
+* Spring Boot Microservices with Spring Cloud Beginner to Guru
+
 ## Others
 * [https://dzone.com/articles/dynamic-configuration-management-in-microservice-a](https://dzone.com/articles/dynamic-configuration-management-in-microservice-a)
 * [https://www.guru99.com/microservices-tutorial.html](https://www.guru99.com/microservices-tutorial.html)
