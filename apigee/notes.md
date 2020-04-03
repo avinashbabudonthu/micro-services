@@ -49,11 +49,22 @@
 * Conditional flows executed based on conditions. Wont execute for all requests
 * Types of flows
 	* [PreFlows](#PreFlows)
-	* Conditional Flows
-	* PostFlows
+	* [Conditional Flows](#Conditional-Flows)
+	* [PostFlows](#PostFlows)
 	* PostClientFlows
 ![picture](images/ProxyEndPoints-TargetEndPoints.png)
 
 ## PreFlows
 * Code that executes before anything else
 * can be part of ProxyEndPoint or TargetEndPoint
+* Process that executes before ProxyEndPoint or TargetEndPoint is hit
+
+## PostFlows
+* Executed after conditional flows and PreFlows
+* Good for
+	* log data
+	* notifications
+
+## Conditional Flows
+* Executed conditionally not for all APIs
+* Executed after PreFlows and before PostFlows
