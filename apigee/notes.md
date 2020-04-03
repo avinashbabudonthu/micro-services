@@ -113,3 +113,7 @@ http(s)://orgname-environment.apigee.net/proxy_base_path/...
 ```
 http(s)://orgname-environment.apigee.net/proxy_base_path/...
 ```
+
+## Create APIGEE account
+* Hit the url [https://login.apigee.com/sign__up](https://login.apigee.com/sign__up)
+* 
