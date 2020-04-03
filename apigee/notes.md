@@ -16,6 +16,15 @@
 	* configure, manage APIs separately from backend services
 	* Create API Proxies which act as Facade to backend services
 * Can Secure, Monitize, Analytics on APIs
+* Can use for dynamic routing
+* Caching
+* Rate Limits
+* Performance Management like
+	* Track active developers and apps
+	* Response time and latency
+	* Error rates
+	* Revenue metrics
+	* Traffic
 
 ## 	API Proxy
 * Program that sits in front of API and proxies incoming user requests to the API and provides various value added features
@@ -51,7 +60,7 @@
 	* [PreFlows](#PreFlows)
 	* [Conditional Flows](#Conditional-Flows)
 	* [PostFlows](#PostFlows)
-	* PostClientFlows
+	* [PostClientFlows](#PostClientFlows)
 ![picture](images/ProxyEndPoints-TargetEndPoints.png)
 
 ## PreFlows
@@ -68,3 +77,39 @@
 ## Conditional Flows
 * Executed conditionally not for all APIs
 * Executed after PreFlows and before PostFlows
+
+## PostClientFlows
+* Flow for logging messages after response returned to clients
+* Only used in ProxyEndPoints
+
+## Policy
+* Module to control API behavior
+* Apply certain process to our requests and responses
+* Once we deploy API Proxy in APIGEE we create bunch of policies with our flows
+* Some APIGEE common built in policies
+	* Quotas
+	* Key management
+	* authorization
+	* access control
+	* Response caching and transformation
+* when we deploy API Proxy using APIGEE we can get number of features as well like
+	* Protection against OWASP (Open Web Application Security Project)
+		* Cross site Injection
+		* Cross site scripting (XSS)
+		* Cross site Request Forgery (CSRF)
+		
+## Organizations
+* Top level container in APIGEE Edge
+* Contains all API proxies and resources
+* When we configure api proxy in APIGEE we will have organization as prefix. For example
+```
+http(s)://orgname-environment.apigee.net/proxy_base_path/...
+```
+
+## Environment
+* Execution environment for API proxies
+* An organization can contain multiple environments
+* URL of API Proxy will also include environment after orgname
+```
+http(s)://orgname-environment.apigee.net/proxy_base_path/...
+```
