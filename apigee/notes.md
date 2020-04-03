@@ -32,7 +32,28 @@
 * ProxyEndPoint
 	* Define how client apps can consume APIs
 	* This is the end point that is directly accessible to users of API
+	* Stages for pre-processing the request before sending to backend services like
+		* Whether app is accessible over HTTP or HTTPS
+		* What is security, quota etc
+	* Post processing response before response returns to the application
+		* 
 * TargetEndPoint
 	* Define how the API proxy interacts with backend services
 	* when request comes, it first hits ProxyEndPoint then move on to the TargetEndPoint. Response move from TargetEndPoint to ProxyEndPoint
+	* Responsible for forwarding request to the correct backend
+	* Format the response in the correct format
+* Both ProxyEndPoints, TargetEndPoints are made up of flows. They are called PreFlows or PostFlows
+
+## Flows
+* Sequential stages in API request processing path. Controls the flow of the request with logic, conditions and error handling
+* Conditional flows executed based on conditions. Wont execute for all requests
+* Types of flows
+	* [PreFlows](PreFlows)
+	* Conditional Flows
+	* PostFlows
+	* PostClientFlows
 ![picture](images/ProxyEndPoints-TargetEndPoints.png)
+
+## PreFlows
+* Code that executes before anything else
+* can be part of ProxyEndPoint or TargetEndPoint
