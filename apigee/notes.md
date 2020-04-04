@@ -6,13 +6,13 @@
 * Protect against security threats
 * Make end points easily available for access using REST/SOAP and other protocols with minimal effort
 * Create, Deploy, Undeploy API protocols using APIGEE Edge
-* API Proxies primary mechanimsm for checking and enforcement of policies and has complext internal architecure like `target end points, and `proxy end points`
+* API Proxies primary mechanimsm for checking and enforcement of policies and has complex internal architecure like `ProxyEndPoints` and `TargetEndPoints`
 
 ## What is APIGEE
 * API management platform helping to expose APIs in a secure way
 * Help expose APIs in secure way
 * APIGEE Edge
-	* product allows us to secure, deploy, monitor and scale APIs
+	* product allows us to `secure`, `deploy`, `monitor` and `scale` APIs
 	* configure, manage APIs separately from backend services
 	* Create API Proxies which act as Facade to backend services
 * Can Secure, Monitize, Analytics on APIs
@@ -45,13 +45,12 @@
 		* Whether app is accessible over HTTP or HTTPS
 		* What is security, quota etc
 	* Post processing response before response returns to the application
-		* 
 * TargetEndPoint
 	* Define how the API proxy interacts with backend services
-	* when request comes, it first hits ProxyEndPoint then move on to the TargetEndPoint. Response move from TargetEndPoint to ProxyEndPoint
+	* when request comes, it first hits `ProxyEndPoint` then move on to the `TargetEndPoint`. Response move from `TargetEndPoint` to `ProxyEndPoint`
 	* Responsible for forwarding request to the correct backend
 	* Format the response in the correct format
-* Both ProxyEndPoints, TargetEndPoints are made up of flows. They are called PreFlows or PostFlows
+* Both ProxyEndPoints, TargetEndPoints are made up of flows. They are called `PreFlows` or `PostFlows`
 
 ## Flows
 * Sequential stages in API request processing path. Controls the flow of the request with logic, conditions and error handling
@@ -65,7 +64,7 @@
 
 ## PreFlows
 * Code that executes before anything else
-* can be part of ProxyEndPoint or TargetEndPoint
+* Can be part of ProxyEndPoint or TargetEndPoint
 * Process that executes before ProxyEndPoint or TargetEndPoint is hit
 
 ## PostFlows
@@ -89,8 +88,8 @@
 * Some APIGEE common built in policies
 	* Quotas
 	* Key management
-	* authorization
-	* access control
+	* Authorization
+	* Access Control
 	* Response caching and transformation
 * when we deploy API Proxy using APIGEE we can get number of features as well like
 	* Protection against OWASP (Open Web Application Security Project)
@@ -116,4 +115,4 @@ http(s)://orgname-environment.apigee.net/proxy_base_path/...
 
 ## Create APIGEE account
 * Hit the url [https://login.apigee.com/sign__up](https://login.apigee.com/sign__up)
-* 
+* Login or Follow the steps for SignUp
