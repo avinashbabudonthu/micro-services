@@ -116,3 +116,82 @@ http(s)://orgname-environment.apigee.net/proxy_base_path/...
 ## Create APIGEE account
 * Hit the url [https://login.apigee.com/sign__up](https://login.apigee.com/sign__up)
 * Login or Follow the steps for SignUp
+
+## Securing APIs using keys
+* App developer must register client application with APIGEE
+	* First setup developer account
+	* This developer sets client application then developer will receive an API key
+	* This API key must me included in every API request to proxy
+* API Proxy will use this api key to authenticate
+* This key in the control of APIGEE and can be revoked at any point of time
+* We can configure keys which are valid for short time period
+* API Proxies configured to use api keys verify the API key policy
+	* key is valid
+	* not revoked
+	* matches the key for requested resource
+
+## Create API Proxy
+* Left Menu - click on Develop
+* Click on `API Proxies`
+* Click `+Proxy` button on top right
+* Select proxy type. For example `Reverse Proxy`
+	* Fill the details
+	* Give URL in `Target` text box
+* click `Next` button
+* Select authorization. For example `Pass through` for public access
+* Check other options available
+* Click 'Next` button
+* Select `secure for https`, `default for http`
+* Click 'Next` button
+* Select `test` to deploy in test environment
+* Click 'Create` button
+
+## Steps to access API with API Key
+* Create API Proxy
+	* Left Menu - click on Develop
+	* Click on `API Proxies`
+	* Click `+Proxy` button on top right
+	* Select proxy type. For example `Reverse Proxy`
+		* Fill the details
+		* Give URL in `Target` text box
+	* click `Next` button
+	* Select `API Key` in 'Security: Authorization`
+![picture](images/api-proxy-with-api-key.jpg)
+	* Check other options available
+	* Click 'Next` button
+	* Select `secure for https`, `default for http`
+	* Click 'Next` button
+	* Select `test` to deploy in test environment
+	* Click 'Create` button
+* Now hit the API. For example `http://avinash4216-81780-eval-test.apigee.net/poa-info-2`. We will get following response
+```
+{"fault":{"faultstring":"Failed to resolve API Key variable request.queryparam.apikey","detail":{"errorcode":"steps.oauth.v2.FailedToResolveAPIKey"}}}
+```
+* Go to proxy and go to Develop tab. We can see policies - `Verify API Key`, `Remove Query Param apikey`
+* Create API Product with above API Proxy
+	* Click `Publish` in left menu
+	* click `API Products`
+	* click `+API Product` on top right
+	* Access - `Public`
+	* Select environment
+	* Add a proxy
+	* Add other details
+	* click `Save` button on top right
+* Create Developers
+	* Click `Publish` in left menu
+	* click 'Developers`
+	* click `+Developer` on top right
+	* Give details
+	* click `Create` button
+* Create Apps
+	* Click `Publish` in left menu
+	* click `Apps`
+	* click `+App` button on top right
+	* Select `Developer` check box. select developer in `Developer` text box
+	* click `Add Product` button. Select the product we created above
+	* click `Create` button on top right
+	* Now it will create `apikey`, `secret`
+* Now hit the API. For example `http://avinash4216-81780-eval-test.apigee.net/poa-info-2?apikey=fgLfPADfkj2f7ddKmxo5yX7UUpbwxxS9`. We wil get following response
+```
+{"app":{"name":"poa","description":"poa application","version":"1.1.0"},"java-vendor":"Oracle Corporation"}
+```
