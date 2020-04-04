@@ -195,3 +195,8 @@ http(s)://orgname-environment.apigee.net/proxy_base_path/...
 ```
 {"app":{"name":"poa","description":"poa application","version":"1.1.0"},"java-vendor":"Oracle Corporation"}
 ```
+* If we want to sent `apikey` as request header
+	* Go to left menu - Develop/API Proxies
+	* Go to Develop tab
+	* select `Verify API Key`
+		* Change `<APIKey ref="request.queryparam.apikey"/>` to `<APIKey ref="request.header.apikey"/>`
