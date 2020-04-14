@@ -61,10 +61,10 @@
 ## Standardizing component ports and URLs
 Application          				| Port
 -------------------- 				| ---------------
-Application Service         		| 8080, 8081
+Application Service 1         		| 8080, 8081
 Spring Cloud Config Server  		| 8888
-Application Service  1 				| 8000, 8001, 8002, ..
-Application Service 2				| 8100, 8101, 8102, ..
+Application Service  2 				| 8000, 8001, 8002, ..
+Application Service 3				| 8100, 8101, 8102, ..
 Netflix Eureka Naming Server		| 8761
 Netflix Zuul API Gateway Server		| 8765
 Zipkin Distributed Tracing Server 	| 9411
