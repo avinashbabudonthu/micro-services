@@ -35,7 +35,6 @@
 * Configuration Management is done with `Spring Cloud Config Server`
 	* We can store configuration of all configurations of all different microservices for all environments in Git Repository
 	* Saving all configurations in one single place
-
 * Dynamic Scale Up and Scale Down
 	* Naming Server and Discovery Server - Eureka
 		* All microservices register with naming server
@@ -53,3 +52,19 @@
 * Fault Tolerance
 	* Hystrix
 		* If service is down Hystrix helps us return default response
+
+## Advantages of microservices
+* Easy to adapt new technology stack
+* Dynamic Scaling
+* Faster release cycles
+
+## Standardizing component ports and URLs
+Application          				| Port
+-------------------- 				| ---------------
+Application Service         		| 8080, 8081
+Spring Cloud Config Server  		| 8888
+Application Service  1 				| 8000, 8001, 8002, ..
+Application Service 2				| 8100, 8101, 8102, ..
+Netflix Eureka Naming Server		| 8761
+Netflix Zuul API Gateway Server		| 8765
+Zipkin Distributed Tracing Server 	| 9411
