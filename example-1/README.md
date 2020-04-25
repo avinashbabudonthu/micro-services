@@ -1,17 +1,38 @@
-# Student Service
+# Microservices with Spring
 
-## Requirement
-* Using Spring Cloud Confitg Server with Student Service
+## Config Server
 
-## Maven Command
+### Maven command
+```
+mvn archetype:generate -DgroupId=com.config.server -DartifactId=config-server -Dversion=1.0 -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+```
+
+### Gradle Command
+```
+gradle init --type pom
+```
+
+### Steps
+* Add spring boot, devtools, actuator, lombok, `spring-cloud-config-server` dependencies. Refer - [pom.xml](pom.xml) or [build.gradle](build.gradle)
+* Create [config-repo](config-repo) folder
+	* Create file [student-service.yml](config-repo/student-service.yml) in [config-repo](config-repo) folder
+		* 
+
+## Student Service
+
+### Maven Command
 ```
 mvn archetype:generate -DgroupId=com.student.service -DartifactId=student-service -Dversion=1.0 -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
 ```
 
-## Gradle Command
+### Gradle Command
 ```
 gradle init --type pom
 ```
+
+### Steps
+* Add spring boot, devtools, actuator, lombok, `spring-cloud-config-client` dependencies. Refer - [pom.xml](pom.xml) or [build.gradle](build.gradle)
+* Create [bootstrap.properties](src/main/resources/bootstrap.properties) file
 
 ## Steps
 * Dependencies - Refer [pom.xml](pom.xml) or [build.gradle](build.gradle)
