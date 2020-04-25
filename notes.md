@@ -23,7 +23,7 @@
 	* dynamically distribute load among running instances
 * Visibility
 	* we need to have centralized log to identify which microservice caused the problem
-	* we need to monitoring for all microservices. While multiple microservices are running we should be able to identify 
+	* we need monitoring for all microservices. While multiple microservices are running we should be able to identify 
 		* which microservice is down
 		* which microservice is running out of disk space
 * Pack of cards
@@ -35,14 +35,15 @@
 * Configuration Management is done with `Spring Cloud Config Server`
 	* We can store configuration of all configurations of all different microservices for all environments in Git Repository
 	* Saving all configurations in one single place
+	* Spring cloud config server maintains all configuration in git repository
 * Dynamic Scale Up and Scale Down
 	* Naming Server and Discovery Server - Eureka
 		* All microservices register with naming server
 	* Ribbon - client side load balancing
 	* Feign - Easier Rest client
 * Visibility and Monitoring
-	* Spring cloud sleuth
-		* To assign as id to request across all microservices
+	* Spring Cloud Sleuth
+		* To assign an id to request across all microservices
 	* Zipkin Distributed Tracing
 		* To trace request across multiple components
 	* Netflix API Gateway Zuul
@@ -68,3 +69,4 @@ Application Service 3				| 8100, 8101, 8102, ..
 Netflix Eureka Naming Server		| 8761
 Netflix Zuul API Gateway Server		| 8765
 Zipkin Distributed Tracing Server 	| 9411
+
