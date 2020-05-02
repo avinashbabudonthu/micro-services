@@ -21,7 +21,7 @@ gradle init --type pom
 ```
 * Main class - [App.java](student-service/src/main/java/com/student/service/App.java)
 * Add spring-boot, devtools, actuator, `spring-cloud-config-client`, `spring-boot-configuration-processor` dependencies. Refer [pom.xml](student-service/pom.xml) (or) [build.gradle](student-service/build.gradle)
-* Create [bootstrap.yml](student-service/src/main/resources/bootstrap.yml) file. Configure following properties
+* Create [student-service/bootstrap.yml](student-service/src/main/resources/bootstrap.yml) file. Configure following properties
 	* server.port
 	* spring.application.name
 * Application is running on port - `9000`. Refer [bootstrap.yml](student-service/src/main/resources/bootstrap.yml) - `server.port` property
@@ -71,3 +71,69 @@ gradle init --type pom
 		* http://localhost:8888/student-service/test
 
 ![picture](images/config-server-link-to-local-git-repo.jpg)
+
+## Connect Student Service to Config Server
+* Open [student-service/bootstrap.yml](student-service/src/main/resources/bootstrap.yml) file. Configure following properties
+	* spring.cloud.config.uri: http://localhost:8888
+	* spring.profiles.active: test
+* Start `config-server`. Run [App.java](config-server/src/main/java/com/config/server/App.java)
+* Start `student-service`. Run [App.java](student-service/src/main/java/com/student/service/App.java)
+* Access API - `example-1/student-service/app/find-all-students` in postman collection - [example-1.postman_collection.json](files/example-1.postman_collection.json)
+```
+{
+    "studentList": [
+        {
+            "id": 5,
+            "name": "james",
+            "course": "spring-aop"
+        },
+        {
+            "id": 6,
+            "name": "jeni",
+            "course": "spring-cloud"
+        }
+    ]
+}
+```
+* Stop `student-service`
+* Change `spring.profiles.active` property value from `test` to 'dev` in [student-service/bootstrap.yml](student-service/src/main/resources/bootstrap.yml)
+* Start `student-service`. Run [App.java](student-service/src/main/java/com/student/service/App.java)
+* Access API - `example-1/student-service/app/find-all-students` in postman collection - [example-1.postman_collection.json](files/example-1.postman_collection.json)
+	* http://localhost:9000/students
+```
+{
+    "studentList": [
+        {
+            "id": 3,
+            "name": "john",
+            "course": "jee"
+        },
+        {
+            "id": 4,
+            "name": "jane",
+            "course": "spring-boot"
+        }
+    ]
+}
+```
+* Stop `student-service`
+* Change `spring.profiles.active` property value from `dev` to 'default` in [student-service/bootstrap.yml](student-service/src/main/resources/bootstrap.yml)
+* Start `student-service`. Run [App.java](student-service/src/main/java/com/student/service/App.java)
+* Access API - `example-1/student-service/app/find-all-students` in postman collection - [example-1.postman_collection.json](files/example-1.postman_collection.json)
+	* http://localhost:9000/students
+```
+{
+    "studentList": [
+        {
+            "id": 1,
+            "name": "jack",
+            "course": "java"
+        },
+        {
+            "id": 2,
+            "name": "jill",
+            "course": "spring"
+        }
+    ]
+}
+```
