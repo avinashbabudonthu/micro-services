@@ -166,6 +166,11 @@ gradle init --type pom
 * Create [employee-service.yml](https://github.com/avinashbabudonthu/spring-cloud-config-server-properties/blob/master/employee-service.yml)
 	* Configure properties as per environment
 	* Commit and Push the changes
+* Start `config-server`	
+	* Open URLs in browser
+			* http://localhost:8888/employee-service/default
+			* http://localhost:8888/employee-service/dev
+			* http://localhost:8888/employee-service/test
 * Start `config-server`. Run [config-server/App.java](config-server/src/main/java/com/config/server/App.java)
 * Start `employee-service`. Run [employee-service/App.java](employee-service/src/main/java/com/employee/service/App.java)
 * Access API - `example-1/employee-service/app/find-all-employes` in postman collection - [example-1.postman_collection.json](files/example-1.postman_collection.json)
