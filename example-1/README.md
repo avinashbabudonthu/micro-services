@@ -76,8 +76,8 @@ gradle init --type pom
 * Open [student-service/bootstrap.yml](student-service/src/main/resources/bootstrap.yml) file. Configure following properties
 	* spring.cloud.config.uri: http://localhost:8888
 	* spring.profiles.active: test
-* Start `config-server`. Run [App.java](config-server/src/main/java/com/config/server/App.java)
-* Start `student-service`. Run [App.java](student-service/src/main/java/com/student/service/App.java)
+* Start `config-server`. Run [config-server/App.java](config-server/src/main/java/com/config/server/App.java)
+* Start `student-service`. Run [student-service/App.java](student-service/src/main/java/com/student/service/App.java)
 * Access API - `example-1/student-service/app/find-all-students` in postman collection - [example-1.postman_collection.json](files/example-1.postman_collection.json)
 ```
 {
