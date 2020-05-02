@@ -1,0 +1,10 @@
+server.port: 9000
+
+spring:  application.name: student-service
+
+students:  student-list:  - id: 1
+    name: jack
+    course: java
+  - id: 2
+    name: jill
+    course: spring
