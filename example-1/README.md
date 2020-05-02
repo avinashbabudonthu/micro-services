@@ -57,3 +57,17 @@ gradle init --type pom
 
 ![picture](images/linking-config-repo.jpg)
 ![picture](images/link-source.jpg)
+
+* Create [student-service.yml](https://github.com/avinashbabudonthu/spring-cloud-config-server-properties/blob/master/student-service.yml) in `spring-cloud-config-server-properties` which is linked to `config-server` project
+* Commit and push the changes of `spring-cloud-config-server-properties`
+* Connect `config-server` to local `spring-cloud-config-server-properties`
+	* Open [applicaiton.yml](config-server/src/main/resources/application.yml). Add following property
+		* spring.cloud.config.server.git.uri: file://C:\practice-projects\spring-cloud-config-server-properties
+	* Add `@EnableConfigServer` at class level to [App.java](config-server/src/main/java/com/config/server/App.java)
+	* Start the application
+	* Open URLs in browser
+		* http://localhost:8888/student-service/default
+		* http://localhost:8888/student-service/dev
+		* http://localhost:8888/student-service/test
+
+![picture](images/config-server-link-to-local-git-repo.jpg)
