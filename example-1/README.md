@@ -45,7 +45,7 @@ gradle init --type pom
 ```
 * Add spring-boot, devtools, actuator, `spring-cloud-config-server`, `spring-boot-configuration-processor` dependencies. Refer [pom.xml](config-server/pom.xml) (or) [build.gradle](config-server/build.gradle)
 * Main class - [App.java](config-server/src/main/java/com/config/server/App.java)
-* Create [applicaiton.yml](config-server/src/main/resources/applicaiton.yml). Configure following properties
+* Create [applicaiton.yml](config-server/src/main/resources/application.yml). Configure following properties
 	* server.port
 	* spring.application.name
-* Application is running on port - `8888`. Refer [applicaiton.yml](config-server/src/main/resources/applicaiton.yml) - `server.port` property
+* Application is running on port - `8888`. Refer [applicaiton.yml](config-server/src/main/resources/application.yml) - `server.port` property
