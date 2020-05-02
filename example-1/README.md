@@ -49,3 +49,11 @@ gradle init --type pom
 	* server.port
 	* spring.application.name
 * Application is running on port - `8888`. Refer [applicaiton.yml](config-server/src/main/resources/application.yml) - `server.port` property
+* Create git repo to configure all our properties for each microservice. Refer [spring-cloud-config-server-properties](https://github.com/avinashbabudonthu/spring-cloud-config-server-properties)
+	* Clone this repo to local
+	* Link this repo folder to our `config-server` project
+		* In eclipse - right click on `config-server` - Build Path - Link Source
+		* Browse to above cloned `spring-cloud-config-server-properties` folder
+
+![picture](images/linking-config-repo.jpg)
+![picture](images/link-source.jpg)
