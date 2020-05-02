@@ -1,0 +1,52 @@
+{
+	"info": {
+		"_postman_id": "5579ed40-b077-4ba3-8a39-f0c78dc9edac",
+		"name": "spring-cloud-config-client-feign",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "accounts-service",
+			"item": [
+				{
+					"name": "actuator",
+					"item": [
+						{
+							"name": "actuator",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:9000/actuator",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"actuator"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "customer-service",
+			"item": [],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "savings-accounts-service",
+			"item": [],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
