@@ -63,7 +63,7 @@ gradle init --type pom
 ```
 * Refer dependencies in [savings-accounts-service/pom.xml](savings-accounts-service/pom.xml) or [savings-accounts-service/build.gradle](savings-accounts-service/build.gradle)
 	* Add `spring-cloud-starter-openfeign` dependency for Feign
-* Properties in [savings-accounts-service/bootstrap.yml](savings-accounts-service//bootstrap.yml)
+* Properties in [savings-accounts-service/bootstrap.yml](savings-accounts-service/src/main/resources/bootstrap.yml)
 * Classes
 	* Main class - [App.java](savings-accounts-service/src/main/java/com/savings/accounts/service/App.java)
 	* Model classes - [savings-accounts-service/src/main/java/com/savings/accounts/service/model](savings-accounts-service/src/main/java/com/savings/accounts/service/model)
