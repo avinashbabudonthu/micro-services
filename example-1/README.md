@@ -193,7 +193,7 @@ gradle init --type pom
 }
 ```
 * Stop `employee-service`
-* Change `spring.profiles.active` property value from `default` to 'dev` in [employee-service/bootstrap.yml](employee-service/src/main/resources/bootstrap.yml)
+* Change `spring.profiles.active` property value from `default` to `dev` in [employee-service/bootstrap.yml](employee-service/src/main/resources/bootstrap.yml)
 * Start `employee-service`. Run [employee-service/App.java](employee-service/src/main/java/com/student/service/App.java)
 * Access API - `example-1/employee-service/app/find-all-employes` in postman collection - [example-1.postman_collection.json](files/example-1.postman_collection.json)
 	* http://localhost:9000/employees
@@ -215,7 +215,7 @@ gradle init --type pom
 }
 ```
 * Stop `employee-service`
-* Change `spring.profiles.active` property value from `dev` to 'test` in [employee-service/bootstrap.yml](employee-service/src/main/resources/bootstrap.yml)
+* Change `spring.profiles.active` property value from `dev` to `test` in [employee-service/bootstrap.yml](employee-service/src/main/resources/bootstrap.yml)
 * Start `employee-service`. Run [employee-service/App.java](employee-service/src/main/java/com/student/service/App.java)
 * Access API - `example-1/employee-service/app/find-all-employes` in postman collection - [example-1.postman_collection.json](files/example-1.postman_collection.json)
 	* http://localhost:9000/employees
