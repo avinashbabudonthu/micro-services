@@ -80,6 +80,7 @@ gradle init --type pom
 * Start `student-service`. Run [student-service/App.java](student-service/src/main/java/com/student/service/App.java)
 * Access API - `example-1/student-service/app/find-all-students` in postman collection - [example-1.postman_collection.json](files/example-1.postman_collection.json)
 	* http://localhost:9000/students
+* Value of `test' profile from [student-service.yml](https://github.com/avinashbabudonthu/spring-cloud-config-server-properties/blob/master/student-service.yml)
 ```
 {
     "studentList": [
@@ -101,6 +102,7 @@ gradle init --type pom
 * Start `student-service`. Run [App.java](student-service/src/main/java/com/student/service/App.java)
 * Access API - `example-1/student-service/app/find-all-students` in postman collection - [example-1.postman_collection.json](files/example-1.postman_collection.json)
 	* http://localhost:9000/students
+* Value of `dev' profile from [student-service.yml](https://github.com/avinashbabudonthu/spring-cloud-config-server-properties/blob/master/student-service.yml)	
 ```
 {
     "studentList": [
@@ -122,6 +124,7 @@ gradle init --type pom
 * Start `student-service`. Run [App.java](student-service/src/main/java/com/student/service/App.java)
 * Access API - `example-1/student-service/app/find-all-students` in postman collection - [example-1.postman_collection.json](files/example-1.postman_collection.json)
 	* http://localhost:9000/students
+* Value of `default' profile from [student-service.yml](https://github.com/avinashbabudonthu/spring-cloud-config-server-properties/blob/master/student-service.yml)
 ```
 {
     "studentList": [
