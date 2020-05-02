@@ -12,6 +12,12 @@
 	* Get savings accounts details from Savings Accounts Service
 * API calls should be done with Feign
 
+## Pre Requisite
+* Should know how to create Spring Cloud config server
+* Connecting Spring Cloud config server to git repo
+* Connecting Spring cloud client to spring cloud config server
+* Refer - https://github.com/avinashbabudonthu/micro-services/tree/master/example-1
+
 ## Customer Service
 * Maven command
 ```
