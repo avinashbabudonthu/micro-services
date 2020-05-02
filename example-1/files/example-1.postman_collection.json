@@ -154,6 +154,38 @@
 				}
 			],
 			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "employee-service",
+			"item": [
+				{
+					"name": "app",
+					"item": [
+						{
+							"name": "find-all-employees",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:9001/employees",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9001",
+									"path": [
+										"employees"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"protocolProfileBehavior": {}

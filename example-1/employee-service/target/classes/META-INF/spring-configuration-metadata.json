@@ -1,0 +1,17 @@
+{
+  "groups": [
+    {
+      "name": "employees",
+      "type": "com.employee.service.model.EmployeeList",
+      "sourceType": "com.employee.service.model.EmployeeList"
+    }
+  ],
+  "properties": [
+    {
+      "name": "employees.employee-list",
+      "type": "java.util.List<com.employee.service.model.Employee>",
+      "sourceType": "com.employee.service.model.EmployeeList"
+    }
+  ],
+  "hints": []
+}

@@ -141,3 +141,93 @@ gradle init --type pom
     ]
 }
 ```
+
+## Create new Employee Service and Connect to Config Server we configred above
+* Maven command
+```
+mvn archetype:generate -DgroupId=com.employee.service -DartifactId=employee-service -Dversion=1.0 -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+```
+* Gradle command
+```
+gradle init --type pom
+```
+* Add spring-boot, devtools, actuator, `spring-cloud-config-client`, `spring-boot-configuration-processor` dependencies. Refer [pom.xml](employee-service/pom.xml) (or) [build.gradle](employee-service/build.gradle)
+* Create [bootstrap.yml](employee-service/src/main/resources/bootstrap.yml) file. Configure following properties
+	* server.port
+	* spring.application.name
+	* spring.cloud.config.uri
+	* spring.profiles.active: default
+* Create model classes. Refer [employee-service/src/main/java/com/employee/service/model](employee-service/src/main/java/com/employee/service/model)
+	* Employee
+	* EmployeeList
+		* Declare `@ConfigurationProperties(prefix = "employees")` annotation at class level
+* Create [AppConfig.java](employee-service/src/main/java/com/employee/service/config/AppConfig.java)
+	* Declare `@EnableConfigurationProperties({ EmployeeList.class })` annotation at class level
+* Create [employee-service.yml](https://github.com/avinashbabudonthu/spring-cloud-config-server-properties/blob/master/employee-service.yml)
+	* Configure properties as per environment
+	* Commit and Push the changes
+* Start `config-server`. Run [config-server/App.java](config-server/src/main/java/com/config/server/App.java)
+* Start `employee-service`. Run [employee-service/App.java](employee-service/src/main/java/com/employee/service/App.java)
+* Access API - `example-1/employee-service/app/find-all-employes` in postman collection - [example-1.postman_collection.json](files/example-1.postman_collection.json)
+	* http://localhost:9000/employees
+* Value of `default' profile from [employee-service.yml](https://github.com/avinashbabudonthu/spring-cloud-config-server-properties/blob/master/employee-service.yml)
+```
+{
+    "employeeList": [
+        {
+            "id": 1,
+            "name": "jack",
+            "dept": "accounts"
+        },
+        {
+            "id": 2,
+            "name": "jill",
+            "dept": "accounts"
+        }
+    ]
+}
+```
+* Stop `employee-service`
+* Change `spring.profiles.active` property value from `default` to 'dev` in [employee-service/bootstrap.yml](employee-service/src/main/resources/bootstrap.yml)
+* Start `employee-service`. Run [employee-service/App.java](employee-service/src/main/java/com/student/service/App.java)
+* Access API - `example-1/employee-service/app/find-all-employes` in postman collection - [example-1.postman_collection.json](files/example-1.postman_collection.json)
+	* http://localhost:9000/employees
+* Value of `default' profile from [employee-service.yml](https://github.com/avinashbabudonthu/spring-cloud-config-server-properties/blob/master/employee-service.yml)
+```
+{
+    "employeeList": [
+        {
+            "id": 3,
+            "name": "john",
+            "dept": "sales"
+        },
+        {
+            "id": 4,
+            "name": "jane",
+            "dept": "sales"
+        }
+    ]
+}
+```
+* Stop `employee-service`
+* Change `spring.profiles.active` property value from `dev` to 'test` in [employee-service/bootstrap.yml](employee-service/src/main/resources/bootstrap.yml)
+* Start `employee-service`. Run [employee-service/App.java](employee-service/src/main/java/com/student/service/App.java)
+* Access API - `example-1/employee-service/app/find-all-employes` in postman collection - [example-1.postman_collection.json](files/example-1.postman_collection.json)
+	* http://localhost:9000/employees
+* Value of `default' profile from [employee-service.yml](https://github.com/avinashbabudonthu/spring-cloud-config-server-properties/blob/master/employee-service.yml)
+```
+{
+    "employeeList": [
+        {
+            "id": 5,
+            "name": "james",
+            "dept": "finance"
+        },
+        {
+            "id": 6,
+            "name": "jeni",
+            "dept": "finance"
+        }
+    ]
+}
+```
