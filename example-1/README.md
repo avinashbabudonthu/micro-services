@@ -9,9 +9,7 @@
 ## Postman Collection
 * Import postman collection json to local postman - [example-1.postman_collection.json](files/example-1.postman_collection.json)
 
-## Steps
-
-### Student Service
+## Student Service
 * Project folder - [student-service](student-service)
 * Maven Command
 ```
@@ -35,8 +33,7 @@ gradle init --type pom
 	* Inject [StudentList.java](student-service/src/main/java/com/student/service/model/StudentList.java)
 	* Write `/students` API - `findAllStudents()`
 
-
-### Config Server
+## Config Server
 * Project folder - [config-server](config-server)
 * Maven command
 ```
