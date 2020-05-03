@@ -6,16 +6,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.savings.accounts.service.model.AccountList;
-import com.savings.accounts.service.rest.clients.AccountService;
 
 @RestController
 public class AppController {
 
 	@Autowired
-	private AccountService accountsService;
+	private AccountList accountList;
 
-	@GetMapping(value = "/feign/accounts", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/accounts", produces = MediaType.APPLICATION_JSON_VALUE)
 	public AccountList test() {
-		return accountsService.findAllAccounts();
+		return accountList;
 	}
 }

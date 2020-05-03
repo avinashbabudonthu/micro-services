@@ -1,12 +1,12 @@
 {
 	"info": {
-		"_postman_id": "5579ed40-b077-4ba3-8a39-f0c78dc9edac",
+		"_postman_id": "80d24aca-4144-4c8d-9c23-e2beecfd5806",
 		"name": "spring-cloud-config-client-feign",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "accounts-service",
+			"name": "savings-accounts-service",
 			"item": [
 				{
 					"name": "actuator",
@@ -57,7 +57,7 @@
 			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "savings-accounts-service",
+			"name": "accounts-service",
 			"item": [
 				{
 					"name": "feign-accounts",
@@ -91,14 +91,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8888/accounts-service/default",
+							"raw": "http://localhost:8888/savings-accounts-service/default",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8888",
 							"path": [
-								"accounts-service",
+								"savings-accounts-service",
 								"default"
 							]
 						}
@@ -111,14 +111,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8888/accounts-service/dev",
+							"raw": "http://localhost:8888/savings-accounts-service/dev",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8888",
 							"path": [
-								"accounts-service",
+								"savings-accounts-service",
 								"dev"
 							]
 						}
@@ -131,14 +131,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8888/accounts-service/test",
+							"raw": "http://localhost:8888/savings-accounts-service/test",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8888",
 							"path": [
-								"accounts-service",
+								"savings-accounts-service",
 								"test"
 							]
 						}
