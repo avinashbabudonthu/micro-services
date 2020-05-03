@@ -3,13 +3,12 @@
 ## Requirement
 * Create 2 services
 	* [Savings Accounts Service](savings-accounts-service)
-	* ]Accounts Service](accounts-service)
+	* [Accounts Service](accounts-service)
 * Create [Spring cloud config server](config-server)
 * Setup above [Savings Accounts Service](savings-accounts-service) as client to [Spring cloud config server](config-server)
 * On calling API in [Savings Accounts Service](savings-accounts-service)
 	* Get accounts details from [Spring cloud config server](config-server)
-* Call API in Account Service - call Savings Account Service and get account details
-	* Call from Account Service to Savings Account Service should be done with `Feign`
+* Call API in [Accounts Service](accounts-service) which call [Savings Accounts Service](savings-accounts-service) using `Feign` and get account details
 
 ## Pre Requisite
 * Should know 
