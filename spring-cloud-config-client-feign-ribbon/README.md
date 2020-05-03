@@ -1,4 +1,4 @@
-# Communication between microservice with Feign
+# Communication between microservice with Feign and Client side Load balancing with Ribbon
 
 ## Requirement
 * Create 2 services
