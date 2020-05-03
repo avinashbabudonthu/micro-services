@@ -1,7 +1,8 @@
 # List Of Projects
 * [Google APIGEE](apigee)
 * [Example 1](example-1)
-* [Spring cloud config server + cloud config client + Feign](spring-cloud-config-client-feign)
+* [Spring Cloud Config Server Cloud Config Client Feign](spring-cloud-config-client-feign)
+* [Spring Cloud Config Server Cloud Config Client Feign Ribbon](spring-cloud-config-client-feign-ribbon)
 
 # Materials
 ## Pluralsight
