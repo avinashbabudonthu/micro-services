@@ -88,7 +88,39 @@ gradle init --type pom
 ```
 savings-accounts-service.ribbon.listOfServers: http://localhost:9000,http://localhost:9001
 ```
+
+## Discovery Server
+* Maven command
+```
+mvn archetype:generate -DgroupId=com.discovery.server -DartifactId=discovery-server -Dversion=1.0 -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+```
+* Gradle command
+```
+gradle init --type pom
+```
+* Refer dependencies in [discovery-server/pom.xml](discovery-server/pom.xml) or [discovery-server/build.gradle](discovery-server/build.gradle)
+	* Add `spring-cloud-starter-netflix-eureka-server`
+	* Add `spring-cloud-config-client` to connect to `config-server` for configurations
 	
+## Register with Eureka Server
+### Register Savings Accounts Service
+* Add `spring-cloud-starter-netflix-eureka-client` dependency
+* Add `@EnableDiscoveryClient` at class level to main class - [App.java](savings-accounts-service/src/main/java/com/savings/accounts/service/App.java)
+* Add below property in [savings-accounts-service/bootstrap.yml](savings-accounts-service/src/main/resources/bootstrap.yml)
+```
+eureka:
+  client.service-url.default-zone: http://localhost:8761/eureka
+```
+	
+### Register Accounts Service
+* Add `spring-cloud-starter-netflix-eureka-client` dependency
+* Add `@EnableDiscoveryClient` at class level to main class - [App.java](accounts-service/src/main/java/com/accounts/service/App.java)
+* Add below property in [accounts-service/bootstrap.yml](accounts-service/src/main/resources/bootstrap.yml)
+```
+eureka:
+  client.service-url.default-zone: http://localhost:8761/eureka
+```
+
 ## Run application
 * Start `config-server` - [App.java](config-server/src/main/java/com/config/server/App.java)
 * Start 2 instances of `savings-accounts-service` - [App.java](savings-accounts-service/src/main/java/com/savings/accounts/service/App.java)
