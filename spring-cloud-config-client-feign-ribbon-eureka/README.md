@@ -1,4 +1,4 @@
-# Communication between microservice with Feign and Client side Load balancing with Ribbon
+# Spring Cloud Config Server Cloud Config Client Feign Ribbon Eureka 
 
 ## What is Ribbon?
 * Client/Consumer side load balancing tool
