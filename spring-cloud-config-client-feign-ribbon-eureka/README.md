@@ -101,6 +101,10 @@ gradle init --type pom
 * Refer dependencies in [discovery-server/pom.xml](discovery-server/pom.xml) or [discovery-server/build.gradle](discovery-server/build.gradle)
 	* Add `spring-cloud-starter-netflix-eureka-server`
 	* Add `spring-cloud-config-client` to connect to `config-server` for configurations
+* Classes
+	* Main class - [App.java](discovery-server/src/main/java/com/discovery/server/App.java)
+		* Add `@EnableEurekaServer` annotation
+	* [application.yml](discovery-server/src/main/resources/application.yml)
 	
 ## Register with Eureka Server
 ### Register Savings Accounts Service
@@ -120,9 +124,17 @@ eureka:
 eureka:
   client.service-url.default-zone: http://localhost:8761/eureka
 ```
+* Remove below property from [accounts-service/bootstrap.yml](accounts-service/src/main/resources/bootstrap.yml)
+```
+savings-accounts-service.ribbon.listOfServers: http://localhost:9000,http://localhost:9001
+```
+* Now `@RibbonClient` [AccountService.java](accounts-service/src/main/java/com/savings/accounts/service/rest/clients/AccountService.java) will get `Savings-Accounts-Service` instance details from `discovery-server` and call API
 
 ## Run application
 * Start `config-server` - [App.java](config-server/src/main/java/com/config/server/App.java)
+* Start `discovery-server` - [App.java](discovery-server/src/main/java/com/discovery/server/App.java)
+	* Check url - http://localhost:8761
+	* We can see list of APIs registered with discovery server
 * Start 2 instances of `savings-accounts-service` - [App.java](savings-accounts-service/src/main/java/com/savings/accounts/service/App.java)
 	* Run [savings-accounts-service/savings-accounts-service-9000.bat](savings-accounts-service/savings-accounts-service-9000.bat)
 	* Run [savings-accounts-service/savings-accounts-service-9001.bat](savings-accounts-service/savings-accounts-service-9001.bat)
