@@ -70,3 +70,11 @@ Netflix Eureka Naming Server		| 8761
 Netflix Zuul API Gateway Server		| 8765
 Zipkin Distributed Tracing Server 	| 9411
 
+## API Gateway
+### Why API Gateway
+* In microservices there are so many microservices that are talking to each other. There are common features that we need to implement for all these microservices like
+	* Authentication, Authorization, Security
+	* Rate Limits: Allowing certain number of calls for per client/user
+	* Fault Tolerance
+	* Service Aggregation
+	
