@@ -77,4 +77,5 @@ Zipkin Distributed Tracing Server 	| 9411
 	* Rate Limits: Allowing certain number of calls for per client/user
 	* Fault Tolerance
 	* Service Aggregation
+		* Like one consumer want to consume 10 of our microservices then it is better to aggregate and provide one common service
 	
