@@ -130,6 +130,16 @@ savings-accounts-service.ribbon.listOfServers: http://localhost:9000,http://loca
 ```
 * Now `@RibbonClient` [AccountService.java](accounts-service/src/main/java/com/savings/accounts/service/rest/clients/AccountService.java) will get `Savings-Accounts-Service` instance details from `discovery-server` and call API
 
+## Netflix Zuul API Gateway Server
+* Maven command
+```
+mvn archetype:generate -DgroupId=com.netflix.zuul.api.gateway.server -DartifactId=netflix-zuul-api-gateway-server -Dversion=1.0 -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+```
+* Gradle command
+```
+gradle init --type pom
+```
+
 ## Run application
 * Start `config-server` - [App.java](config-server/src/main/java/com/config/server/App.java)
 * Start `discovery-server` - [App.java](discovery-server/src/main/java/com/discovery/server/App.java)

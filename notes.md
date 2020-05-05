@@ -78,4 +78,4 @@ Zipkin Distributed Tracing Server 	| 9411
 	* Fault Tolerance
 	* Service Aggregation
 		* Like one consumer want to consume 10 of our microservices then it is better to aggregate and provide one common service
-	
+* Instead of calling each microservice calling other microservice directly we will go through API Gateway
