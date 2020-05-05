@@ -1,10 +1,76 @@
 {
 	"info": {
-		"_postman_id": "09a66130-0906-436c-a934-edefc4d32f71",
-		"name": "spring-cloud-config-client-feign-ribbon-eureka",
+		"_postman_id": "5c0e109f-006d-4d50-9bf5-7f5b7122e963",
+		"name": "spring-cloud-config-client-feign-ribbon-eureka-zuul",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
+		{
+			"name": "config-server",
+			"item": [
+				{
+					"name": "accounts-service-default",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8888/savings-accounts-service/default",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"savings-accounts-service",
+								"default"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "accounts-service-dev",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8888/savings-accounts-service/dev",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"savings-accounts-service",
+								"dev"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "accounts-service-test",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8888/savings-accounts-service/test",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"savings-accounts-service",
+								"test"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
 		{
 			"name": "savings-accounts-service",
 			"item": [
@@ -97,67 +163,20 @@
 						}
 					},
 					"response": []
-				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "config-server",
-			"item": [
-				{
-					"name": "accounts-service-default",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8888/savings-accounts-service/default",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8888",
-							"path": [
-								"savings-accounts-service",
-								"default"
-							]
-						}
-					},
-					"response": []
 				},
 				{
-					"name": "accounts-service-dev",
+					"name": "test",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8888/savings-accounts-service/dev",
+							"raw": "http://localhost:9090/test",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8888",
+							"port": "9090",
 							"path": [
-								"savings-accounts-service",
-								"dev"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "accounts-service-test",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8888/savings-accounts-service/test",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8888",
-							"path": [
-								"savings-accounts-service",
 								"test"
 							]
 						}

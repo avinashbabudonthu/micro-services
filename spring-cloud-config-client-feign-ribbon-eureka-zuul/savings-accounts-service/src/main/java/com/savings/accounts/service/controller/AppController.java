@@ -21,10 +21,15 @@ public class AppController {
 	private Environment environment;
 
 	@GetMapping(value = "/accounts", produces = MediaType.APPLICATION_JSON_VALUE)
-	public Map<String, Object> test() {
+	public Map<String, Object> accounts() {
 		Map<String, Object> result = new HashMap<>();
 		result.put("accountList", accountList);
 		result.put("port", environment.getProperty("local.server.port"));
 		return result;
+	}
+
+	@GetMapping(value = "/test", produces = MediaType.TEXT_PLAIN_VALUE)
+	public String test() {
+		return "hello world";
 	}
 }

@@ -13,4 +13,7 @@ public interface AccountService {
 
 	@GetMapping(value = "/accounts", produces = MediaType.APPLICATION_JSON_VALUE)
 	public Map<String, Object> findAllAccounts();
+
+	@GetMapping(value = "/test", produces = MediaType.TEXT_PLAIN_VALUE)
+	public String test();
 }

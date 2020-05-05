@@ -5,6 +5,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,5 +20,10 @@ public class AppController {
 	@GetMapping(value = "/feign/accounts", produces = APPLICATION_JSON_VALUE)
 	public Map<String, Object> findAllAccounts() {
 		return accountsService.findAllAccounts();
+	}
+
+	@GetMapping(value = "/test", produces = MediaType.TEXT_PLAIN_VALUE)
+	public String test() {
+		return accountsService.test();
 	}
 }
