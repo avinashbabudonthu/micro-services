@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "5c0e109f-006d-4d50-9bf5-7f5b7122e963",
-		"name": "spring-cloud-config-client-feign-ribbon-eureka-zuul",
+		"name": "spring-cloud-config-client-feign-ribbon-zuul",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [

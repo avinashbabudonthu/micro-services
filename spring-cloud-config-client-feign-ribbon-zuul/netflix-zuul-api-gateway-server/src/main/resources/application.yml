@@ -1,0 +1,8 @@
+server.port: 8765
+
+spring:  application.name: netflix-zuul-api-gateway-server
+  
+routes:
+  savings-accounts-service:
+    path: /accounts/**
+    url: http://localhost:9000

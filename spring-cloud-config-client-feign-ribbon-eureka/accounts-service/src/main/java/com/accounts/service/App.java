@@ -5,8 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
+import com.accounts.service.rest.clients.AccountService;
+
 @SpringBootApplication
-@EnableFeignClients("com.accounts.service")
+@EnableFeignClients(basePackageClasses = AccountService.class)
 @EnableDiscoveryClient
 public class App {
 	public static void main(String[] args) {
