@@ -1,10 +1,11 @@
 # List Of Projects
 * [Google APIGEE](apigee)
 * [Example 1](example-1)
+* [Feign Eureka](feign-eureka)
 * [Spring Cloud Config Server Cloud Config Client Feign](spring-cloud-config-client-feign)
 * [Spring Cloud Config Server Cloud Config Client Feign Ribbon](spring-cloud-config-client-feign-ribbon)
 * [Spring Cloud Config Server Cloud Config Client Feign Ribbon Eureka](spring-cloud-config-client-feign-ribbon-eureka)
-* [Spring Cloud Config Server Cloud Config Client Feign Ribbon Zuul](spring-cloud-config-client-feign-ribbon-zuul)
+* [Spring Cloud Config Server Cloud Config Client Feign Ribbon Eureka Zuul](spring-cloud-config-client-feign-ribbon-eureka-zuul)
 
 # Materials
 ## Pluralsight
