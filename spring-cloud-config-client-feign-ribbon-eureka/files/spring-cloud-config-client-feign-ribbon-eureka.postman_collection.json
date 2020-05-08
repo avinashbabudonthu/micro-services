@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "3059026c-161f-4697-a344-ff1c908fd593",
+		"_postman_id": "1f9c0abc-cf06-490c-8cd5-180baf35ea39",
 		"name": "spring-cloud-config-client-feign-ribbon-eureka",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -120,6 +120,26 @@
 					"response": []
 				},
 				{
+					"name": "v2-accounts-9000",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/v2/accounts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"v2",
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "accounts-9001",
 					"request": {
 						"method": "GET",
@@ -137,6 +157,65 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "v2-accounts-9001",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9001/v2/accounts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9001",
+							"path": [
+								"v2",
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "accounts-9002",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9002/accounts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9002",
+							"path": [
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "v2-accounts-9002",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9002/v2/accounts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9002",
+							"path": [
+								"v2",
+								"accounts"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}
@@ -144,6 +223,26 @@
 		{
 			"name": "accounts-service",
 			"item": [
+				{
+					"name": "test",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/feign/test",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"feign",
+								"test"
+							]
+						}
+					},
+					"response": []
+				},
 				{
 					"name": "feign-accounts",
 					"request": {
@@ -165,19 +264,21 @@
 					"response": []
 				},
 				{
-					"name": "test",
+					"name": "v2-feign-accounts",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:9090/test",
+							"raw": "http://localhost:9090/feign/v2/accounts",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "9090",
 							"path": [
-								"test"
+								"feign",
+								"v2",
+								"accounts"
 							]
 						}
 					},

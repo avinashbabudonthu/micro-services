@@ -138,6 +138,7 @@ savings-accounts-service.ribbon.listOfServers: http://localhost:9000,http://loca
 * Start 2 instances of `savings-accounts-service` - [App.java](savings-accounts-service/src/main/java/com/savings/accounts/service/App.java)
 	* Run [savings-accounts-service/savings-accounts-service-9000.bat](savings-accounts-service/savings-accounts-service-9000.bat)
 	* Run [savings-accounts-service/savings-accounts-service-9001.bat](savings-accounts-service/savings-accounts-service-9001.bat)
+	* Run [savings-accounts-service/savings-accounts-service-9002.bat](savings-accounts-service/savings-accounts-service-9002.bat)
 * Start `accounts-service` - [App.java](accounts-service/src/main/java/com/accounts/service/App.java)
 * Hit API - [spring-cloud-config-client-feign.postman_collection.json](files/spring-cloud-config-client-feign.postman_collection.json)
 	* savings-accounts-service/feign-accounts - http://localhost:9090/feign/accounts

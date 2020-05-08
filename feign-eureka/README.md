@@ -28,7 +28,7 @@ gradle init --type pom
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-parent</artifactId>
-			<version>Greenwich.RELEASE</version>
+			<version>Greenwich.SR3</version>
 			<type>pom</type>
 			<scope>import</scope>
 		</dependency>
@@ -38,7 +38,7 @@ gradle init --type pom
 * Add following dependency management in [build.gradle](eureka-server/build.gradle)
 ```
 ext {
-	set('springCloudVersion', "Greenwich.RELEASE")
+	set('springCloudVersion', "Greenwich.SR3")
 }
 
 dependencyManagement {
@@ -91,7 +91,7 @@ gradle init --type pom
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-parent</artifactId>
-			<version>Greenwich.RELEASE</version>
+			<version>Greenwich.SR3</version>
 			<type>pom</type>
 			<scope>import</scope>
 		</dependency>
@@ -101,7 +101,7 @@ gradle init --type pom
 * Add following dependencyManagement in [build.gradle](microservice1/build.gradle)
 ```
 ext {
-	set('springCloudVersion', "Greenwich.RELEASE")
+	set('springCloudVersion', "Greenwich.SR3")
 }
 
 dependencyManagement {
@@ -154,7 +154,7 @@ gradle init --type pom
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-parent</artifactId>
-			<version>Greenwich.RELEASE</version>
+			<version>Greenwich.SR3</version>
 			<type>pom</type>
 			<scope>import</scope>
 		</dependency>
@@ -164,7 +164,7 @@ gradle init --type pom
 * Add following dependencyManagement in [build.gradle](microservice2/build.gradle)
 ```
 ext {
-	set('springCloudVersion', "Greenwich.RELEASE")
+	set('springCloudVersion', "Greenwich.SR3")
 }
 
 dependencyManagement {

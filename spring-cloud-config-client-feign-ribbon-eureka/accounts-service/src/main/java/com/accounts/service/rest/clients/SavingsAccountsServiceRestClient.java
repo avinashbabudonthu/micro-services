@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @FeignClient(name = "savings-accounts-service")
 @RibbonClient(name = "savings-accounts-service")
-public interface AccountService {
+public interface SavingsAccountsServiceRestClient {
 
 	@GetMapping(value = "/accounts", produces = MediaType.APPLICATION_JSON_VALUE)
 	public Map<String, Object> findAllAccounts();
+
+	@GetMapping(value = "/v2/accounts", produces = MediaType.APPLICATION_JSON_VALUE)
+	public Map<String, Object> accountsV2();
 }
