@@ -9,7 +9,7 @@ mvn archetype:generate -DgroupId=com.eureka.server -DartifactId=eureka-server -D
 ```
 gradle init --type pom
 ```
-* Add following dependency management entry
+* Add following dependency management in [pom.xml](eureka-server/pom.xml)
 ```
 <dependencyManagement>
 	<dependencies>
@@ -23,13 +23,30 @@ gradle init --type pom
 	</dependencies>
 </dependencyManagement>
 ```
-* Add following dependency
+* Add following dependency management in [build.gradle](eureka-server/build.gradle)
+```
+ext {
+	set('springCloudVersion', "Greenwich.RELEASE")
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
+```
+* Add following dependency in [pom.xml](eureka-server/pom.xml)
 ```
 <dependency>
 	<groupId>org.springframework.cloud</groupId>
 	<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
 </dependency>
 ```
+* Add following dependency in [build.gradle](eureka-server/build.gradle)
+```
+compile 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
+```
+
 * Make application eureka server. Add `@EnableEurekaServer` annotation in the main class [App.java](eureka-server/src/main/java/com/eureka/server/App.java)
 * Refer [pom.xml](eureka-server/pom.xml) or [build.gradle](eureka-server/build.gradle)
 * Add following entry in [application.yml](eureka-server/src/main/resources/application.yml)
