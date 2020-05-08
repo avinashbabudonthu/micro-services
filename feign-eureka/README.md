@@ -209,3 +209,6 @@ Hello from MICROSERVICE1
 ```
 Hello from MICROSERVICE2, Hello from MICROSERVICE1
 ```
+
+## API
+* [feign-eureka.postman_collection.json](files/feign-eureka.postman_collection.json)
