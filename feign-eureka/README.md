@@ -135,5 +135,77 @@ eureka:
 ```
 * Start `eureka-server`. Execute main class [eureka-server/App.java](eureka-server/src/main/java/com/eureka/server/App.java)
 * Start `microservice1`.  Execute main class [microservice1/App.java](microservice1/src/main/java/com/microservice1/App.java)
-
+* Open url - http://localhost:8761
 ![picture](images/microservice1.jpg)
+
+## Microservice2
+* Create project using maven command
+```
+mvn archetype:generate -DgroupId=com.microservice2 -DartifactId=microservice2 -Dversion=1.0 -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false 
+```
+* Add gradle. Execute below command from `microservice2` folder
+```
+gradle init --type pom
+```
+* Add following dependencyManagement in [pom.xml](microservice2/pom.xml)
+```
+<dependencyManagement>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-parent</artifactId>
+			<version>Greenwich.RELEASE</version>
+			<type>pom</type>
+			<scope>import</scope>
+		</dependency>
+	</dependencies>
+</dependencyManagement>
+```
+* Add following dependencyManagement in [build.gradle](microservice2/build.gradle)
+```
+ext {
+	set('springCloudVersion', "Greenwich.RELEASE")
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
+```
+* Add following dependency in [pom.xml](microservice2/pom.xml)
+```
+<dependency>
+	<groupId>org.springframework.cloud</groupId>
+	<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+</dependency>
+
+<dependency>
+	<groupId>org.springframework.cloud</groupId>
+	<artifactId>spring-cloud-starter-openfeign</artifactId>
+</dependency>
+```
+* Add following dependency in [build.gradle](microservice2/build.gradle)
+```
+compile 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+compile 'org.springframework.cloud:spring-cloud-starter-openfeign'
+```
+* Add `@EnableFeignClients` annotation on main class [App.java](microservice2/src/main/java/com/microservice2/App.java) to make this as Feign client
+* Add `@EnableEurekaClient` annotation on main class [App.java](microservice2/src/main/java/com/microservice2/App.java) to make this as Eureka client
+* Create Feign client interface - [Microservice1FeignClient.java](microservice2/src/main/java/com/microservice2/rest/clients/Microservice1FeignClient.java)
+	* Add `@FeignClient("microservice1")` annotation
+	* `microservice1` is `spring.application.name` property in [microservice1/application.yml](microservice1/src/main/resources/application.yml)
+* Inject [Microservice1FeignClient.java](microservice2/src/main/java/com/microservice2/rest/clients/Microservice1FeignClient.java) in [AppController.java](microservice2/src/main/java/com/microservice2/controller/AppController.java)
+* Start `eureka-server`. Execute main class [eureka-server/App.java](eureka-server/src/main/java/com/eureka/server/App.java)
+* Start `microservice1`.  Execute main class [microservice1/App.java](microservice1/src/main/java/com/microservice1/App.java)
+* Start `microservice2`.  Execute main class [microservice2/App.java](microservice2/src/main/java/com/microservice2/App.java)
+* Open url - http://localhost:8761
+![picture](images/microservice2.jpg)
+* Hit API - http://localhost:9000/hello
+```
+Hello from MICROSERVICE1
+```
+* Hit API - http://localhost:9090/greet
+```
+Hello from MICROSERVICE2, Hello from MICROSERVICE1
+```
