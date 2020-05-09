@@ -79,3 +79,9 @@ Zipkin Distributed Tracing Server 	| 9411
 	* Service Aggregation
 		* Like one consumer want to consume 10 of our microservices then it is better to aggregate and provide one common service
 * Instead of calling each microservice calling other microservice directly we will go through API Gateway
+
+## Ribbon
+* Client/API Consumer side load balancing tool
+* Examples
+	* https://github.com/avinashbabudonthu/micro-services/tree/master/spring-cloud-config-client-feign-ribbon
+	* https://github.com/avinashbabudonthu/micro-services/tree/master/spring-cloud-config-client-feign-ribbon-eureka
