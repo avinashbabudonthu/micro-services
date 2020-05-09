@@ -490,4 +490,4 @@ java -jar zipkin-server-*-exec.jar
 * Check the console of `zuul-gateway`, `accounts-service`, `savings-accounts-service`
 	* we can see log being generated with unique id
 * Go to `zipkin` URL http://localhost:9411
-![picture](logs-in-zipkin.jpg)
+![picture](images/logs-in-zipkin.jpg)
