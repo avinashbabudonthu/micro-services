@@ -7,6 +7,7 @@
 * [Spring Cloud Config Server Cloud Config Client Feign Ribbon Eureka](spring-cloud-config-client-feign-ribbon-eureka)
 * [Spring Cloud Config Server Cloud Config Client Feign Ribbon Eureka Zuul](spring-cloud-config-client-feign-ribbon-eureka-zuul)
 * [Spring Cloud Config Server Cloud Config Client Feign Ribbon Eureka Zuul Sleuth Zipkin](spring-cloud-config-client-feign-ribbon-eureka-zuul-sleuth-zipkin)
+* [Spring Cloud Config Server Cloud Config Client Cloud Bus](spring-cloud-config-server-client-cloud-bus)
 
 # Materials
 ## Pluralsight
