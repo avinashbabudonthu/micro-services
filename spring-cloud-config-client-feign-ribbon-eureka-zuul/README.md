@@ -16,6 +16,9 @@
 * Call API in [Accounts Service](accounts-service) which call [Savings Accounts Service](savings-accounts-service) using `Feign` and get account details
 * Start multiple instances of [Savings Accounts Service](savings-accounts-service) on different ports - `9000`, `9001`, `9002`
 * Configure ribbon at [Accounts Service](accounts-service) and distribute load on [Savings Accounts Service](savings-accounts-service) running instances
+* Create Zuul API gateway and implement logging
+	* All requests should go through API gateway and print log
+	* [Accounts Service](accounts-service) to [Savings Accounts Service](savings-accounts-service) al should go through API gateway
 
 ## Pre Requisite
 * Go through below examples
@@ -286,12 +289,68 @@ eureka:
 ```
 * Refer all properties in [accounts-service/bootstrap.yml](accounts-service/src/main/resources/bootstrap.yml)
 * Add `@EnableFeignClients`, `@EnableEurekaClient` in main class - [App.java](accounts-service/src/main/java/com/accounts/service/App.java)
-* Add `@FeignClient(name = "savings-accounts-service")`, `@RibbonClient(name = "savings-accounts-service")` in [SavingsAccountsServiceRestClient.java](accounts-service/src/main/java/com/savings/accounts/service/rest/clients/SavingsAccountsServiceRestClient.java)
+* Add `@FeignClient(name = "zuul-gateway")`, `@RibbonClient(name = "savings-accounts-service")` in [SavingsAccountsServiceRestClient.java](accounts-service/src/main/java/com/savings/accounts/service/rest/clients/SavingsAccountsServiceRestClient.java)
+* Each API call mapping should have `applicatio name` prefix like. Refer [SavingsAccountsServiceRestClient.java](accounts-service/src/main/java/com/savings/accounts/service/rest/clients/SavingsAccountsServiceRestClient.java)
+	* /savings-accounts-service/accounts
+	* /savings-accounts-service/v2/accounts
 * Other Classes
 	* Config class - [AppConfig.java](accounts-service/src/main/java/com/accounts/service/config/AppConfig.java)
 	* Controller class - [AppController.java](accounts-service/src/main/java/com/accounts/service/controller/AppController.java)
 	* Model classes - [accounts-service/src/main/java/com/accounts/service/model](accounts-service/src/main/java/com/accounts/service/model)
 
+## Zuul API Gateway
+* Create project using maven
+```
+mvn archetype:generate -DgroupId=com.zuul.gateway -DartifactId=zuul-gateway -Dversion=1.0 -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+```
+* Add gradle. Execute below command from `zuul-gateway` folder
+```
+gradle init --type pom
+```
+* For maven add following dependencies in [zuul-gateway/pom.xml](zuul-gateway/pom.xml)
+```
+<dependencyManagement>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-dependencies</artifactId>
+			<version>Greenwich.SR3</version>
+			<type>pom</type>
+			<scope>import</scope>
+		</dependency>
+	</dependencies>
+</dependencyManagement>
+	
+<dependency>
+	<groupId>org.springframework.cloud</groupId>
+	<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+</dependency>
+
+<dependency>
+	<groupId>org.springframework.cloud</groupId>
+	<artifactId>spring-cloud-starter-netflix-zuul</artifactId>
+</dependency>	
+```
+* For gradle add following dependencies in [zuul-gateway/build.gradle](zuul-gateway/build.gradle)
+```
+ext {
+	set('springCloudVersion', "Greenwich.SR3")
+}
+
+compile 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+compile 'org.springframework.cloud:spring-cloud-starter-netflix-zuul'
+```
+* Add `@EnableZuulProxy`, `@EnableEurekaClient` annotations in main class [zuul-gateway/App.java](zuul-gateway/src/main/java/com/zuul/gateway/App.java)
+* Create LoggingFilter class extends com.netflix.zuul.ZuulFilter - [zuul-gateway/LoggingFilter.java](zuul-gateway/src/main/java/com/zuul/gateway/filter/LoggingFilter.java)
+* Add following properties in [zuul-gateway/application.yml](zuul-gateway/src/main/resources/application.yml) to make this Eureka client
+```
+eureka:  
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka
+  instance:
+    prefer-ip-address: true  
+```
 ## Run application
 * Start `config-server` - [App.java](config-server/src/main/java/com/config/server/App.java)
 * Start `discovery-server` - [App.java](discovery-server/src/main/java/com/discovery/server/App.java)
@@ -301,9 +360,8 @@ eureka:
 	* Run [savings-accounts-service/savings-accounts-service-9000.bat](savings-accounts-service/savings-accounts-service-9000.bat)
 	* Run [savings-accounts-service/savings-accounts-service-9001.bat](savings-accounts-service/savings-accounts-service-9001.bat)
 	* Run [savings-accounts-service/savings-accounts-service-9002.bat](savings-accounts-service/savings-accounts-service-9002.bat)
+* Start `zuul-gateway` - [zuul-gateway/App.java](zuul-gateway/src/main/java/com/zuul/gateway/App.java)
 * Start `accounts-service` - [App.java](accounts-service/src/main/java/com/accounts/service/App.java)
-* Hit API - [spring-cloud-config-client-feign-ribbon-eureka.postman_collection.json](files/spring-cloud-config-client-feign-ribbon-eureka.postman_collection.json)
-	* accounts-service
-		* feign-accounts - http://localhost:9090/feign/accounts
-			* We can see port number in response. Some responses will come from 9000 and some from 9001 and some from 9002
-		* v2-feign-accounts - http://localhost:9090/feign/v2/accounts
+* Hit APIs in [spring-cloud-config-client-feign-ribbon-eureka-zuul.postman_collection.json](files/spring-cloud-config-client-feign-ribbon-eureka-zuul.postman_collection.json)
+	* zuul-gateway folder in postman collection
+		* Hit any API and check `zuul-gateway` console log - should be able to request URI in log

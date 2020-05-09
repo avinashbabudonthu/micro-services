@@ -39,11 +39,6 @@ public class AppController {
 	@GetMapping(value = "/v2/accounts", produces = MediaType.APPLICATION_JSON_VALUE)
 	public Map<String, Object> accountsV2() {
 		Map<String, Object> result = new HashMap<>();
-		/*Account account1 = Account.builder().number("1").name("jill").build();
-		Account account2 = Account.builder().number("2").name("james").build();
-		List<Account> accountList = new ArrayList<>();
-		accountList.add(account1);
-		accountList.add(account2);*/
 		result.put("accountList", accountList);
 		result.put("port", environment.getProperty("local.server.port"));
 		return result;

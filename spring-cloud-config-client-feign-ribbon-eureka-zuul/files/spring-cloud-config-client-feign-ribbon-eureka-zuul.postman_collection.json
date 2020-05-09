@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "56c0f5ba-04d7-428c-87ab-c8138c71d05e",
-		"name": "spring-cloud-config-client-feign-ribbon-eureka",
+		"_postman_id": "84052c07-14ba-4325-98c8-710dec3564ec",
+		"name": "spring-cloud-config-client-feign-ribbon-eureka-zuul",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -283,6 +283,131 @@
 						}
 					},
 					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "zuul-gateway",
+			"item": [
+				{
+					"name": "savings-accounts-service",
+					"item": [
+						{
+							"name": "accounts",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8765/savings-accounts-service/accounts",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8765",
+									"path": [
+										"savings-accounts-service",
+										"accounts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "v2-feign-accounts",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8765/savings-accounts-service/v2/accounts",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8765",
+									"path": [
+										"savings-accounts-service",
+										"v2",
+										"accounts"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "accounts-service",
+					"item": [
+						{
+							"name": "test",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8765/accounts-service/feign/test",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8765",
+									"path": [
+										"accounts-service",
+										"feign",
+										"test"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "accounts",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8765/accounts-service/feign/accounts",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8765",
+									"path": [
+										"accounts-service",
+										"feign",
+										"accounts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "v2-feign-accounts Copy",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8765/accounts-service/feign/v2/accounts",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8765",
+									"path": [
+										"accounts-service",
+										"feign",
+										"v2",
+										"accounts"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
 				}
 			],
 			"protocolProfileBehavior": {}
