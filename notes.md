@@ -88,3 +88,12 @@ Zipkin Distributed Tracing Server 	| 9411
 	
 ## Sleuth
 * Assign unique id to a request so we that we can trace it across microservices
+* Zipkin - distributed tracing server
+	* Get logs from multiple microservices to one common place like Splunk
+	
+## Zipkin
+* Centralized location to check all logs so that we can search by log-id assigned by `Sleuth`
+* There are other tools also for centralized logging
+	* ELK Stack
+	* Kibana
+* Zipkin server connects to database in backend
