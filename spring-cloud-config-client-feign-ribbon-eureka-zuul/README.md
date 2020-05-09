@@ -23,6 +23,7 @@
 	* https://github.com/avinashbabudonthu/micro-services/tree/master/feign-eureka
 	* https://github.com/avinashbabudonthu/micro-services/tree/master/spring-cloud-config-client-feign
 	* https://github.com/avinashbabudonthu/micro-services/tree/master/spring-cloud-config-client-feign-ribbon
+	* https://github.com/avinashbabudonthu/micro-services/tree/master/spring-cloud-config-client-feign-ribbon-eureka
 
 ## API
 * Import [spring-cloud-config-client-feign-ribbon-eureka.postman_collection.json](files/spring-cloud-config-client-feign-ribbon-eureka.postman_collection.json) to local postman
