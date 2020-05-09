@@ -289,8 +289,8 @@ eureka:
 ```
 * Refer all properties in [accounts-service/bootstrap.yml](accounts-service/src/main/resources/bootstrap.yml)
 * Add `@EnableFeignClients`, `@EnableEurekaClient` in main class - [App.java](accounts-service/src/main/java/com/accounts/service/App.java)
-* Add `@FeignClient(name = "zuul-gateway")`, `@RibbonClient(name = "savings-accounts-service")` in [SavingsAccountsServiceRestClient.java](accounts-service/src/main/java/com/savings/accounts/service/rest/clients/SavingsAccountsServiceRestClient.java)
-* Each API call mapping should have `applicatio name` prefix like. Refer [SavingsAccountsServiceRestClient.java](accounts-service/src/main/java/com/savings/accounts/service/rest/clients/SavingsAccountsServiceRestClient.java)
+* Add `@FeignClient(name = "zuul-gateway")`, `@RibbonClient(name = "savings-accounts-service")` in [SavingsAccountsServiceRestClient.java](accounts-service/src/main/java/com/accounts/service/rest/clients/SavingsAccountsServiceRestClient.java)
+* Each API call mapping should have `applicatio name` prefix like. Refer [SavingsAccountsServiceRestClient.java](accounts-service/src/main/java/com/accounts/service/rest/clients/SavingsAccountsServiceRestClient.java)
 	* /savings-accounts-service/accounts
 	* /savings-accounts-service/v2/accounts
 * Other Classes
