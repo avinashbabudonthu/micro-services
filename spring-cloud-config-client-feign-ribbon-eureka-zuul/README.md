@@ -356,11 +356,11 @@ eureka:
 * Start `discovery-server` - [App.java](discovery-server/src/main/java/com/discovery/server/App.java)
 	* Check url - http://localhost:8761
 	* We can see list of APIs registered with discovery server
+* Start `zuul-gateway` - [zuul-gateway/App.java](zuul-gateway/src/main/java/com/zuul/gateway/App.java)
 * Start 3 instances of `savings-accounts-service`
 	* Run [savings-accounts-service/savings-accounts-service-9000.bat](savings-accounts-service/savings-accounts-service-9000.bat)
 	* Run [savings-accounts-service/savings-accounts-service-9001.bat](savings-accounts-service/savings-accounts-service-9001.bat)
 	* Run [savings-accounts-service/savings-accounts-service-9002.bat](savings-accounts-service/savings-accounts-service-9002.bat)
-* Start `zuul-gateway` - [zuul-gateway/App.java](zuul-gateway/src/main/java/com/zuul/gateway/App.java)
 * Start `accounts-service` - [App.java](accounts-service/src/main/java/com/accounts/service/App.java)
 * Hit APIs in [spring-cloud-config-client-feign-ribbon-eureka-zuul.postman_collection.json](files/spring-cloud-config-client-feign-ribbon-eureka-zuul.postman_collection.json)
 	* zuul-gateway folder in postman collection
