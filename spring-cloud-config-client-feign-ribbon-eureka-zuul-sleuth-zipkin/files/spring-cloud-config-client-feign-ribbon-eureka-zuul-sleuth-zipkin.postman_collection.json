@@ -384,7 +384,7 @@
 							"response": []
 						},
 						{
-							"name": "v2-feign-accounts Copy",
+							"name": "v2-feign-accounts",
 							"request": {
 								"method": "GET",
 								"header": [],
