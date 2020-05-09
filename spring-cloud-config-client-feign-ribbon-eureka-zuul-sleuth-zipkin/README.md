@@ -184,6 +184,11 @@ gradle init --type pom
 	<groupId>org.springframework.cloud</groupId>
 	<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 </dependency>
+
+<dependency>
+	<groupId>org.springframework.cloud</groupId>
+	<artifactId>spring-cloud-starter-sleuth</artifactId>
+</dependency>
 ```
 * For gradle - add following in [savings-accounts-service/build.gradle](savings-accounts-service/build.gradle)
 ```
@@ -199,6 +204,7 @@ dependencyManagement {
 
 compile 'org.springframework.cloud:spring-cloud-config-client'
 compile 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+compile 'org.springframework.cloud:spring-cloud-starter-sleuth'
 ```
 * Refer full dependencies in [savings-accounts-service/pom.xml](savings-accounts-service/pom.xml) or [savings-accounts-service/build.gradle](savings-accounts-service/build.gradle)
 * Add following properties in [savings-accounts-service/bootstrap.yml](savings-accounts-service/src/main/resources/bootstrap.yml) to make as spring cloud config client
@@ -220,6 +226,14 @@ eureka:
 * Other Classes
 	* Main class - [App.java](savings-accounts-service/src/main/java/com/savings/accounts/service/App.java)
 	* Config class - [AppConfig.java](savings-accounts-service/src/main/java/com/savings/accounts/service/config/AppConfig.java)
+		* Add following Bean 
+```
+import brave.sampler.Sampler;
+@Bean
+public Sampler defaultSampler() {
+	return Sampler.ALWAYS_SAMPLE;
+}
+```
 	* Model classes - [savings-accounts-service/src/main/java/com/savings/accounts/service/model](savings-accounts-service/src/main/java/com/savings/accounts/service/model)
 	* Controller class - [AppController.java](savings-accounts-service/src/main/java/com/savings/accounts/service/controller/AppController.java)
 
@@ -259,6 +273,11 @@ gradle init --type pom
 <dependency>
 	<groupId>org.springframework.cloud</groupId>
 	<artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
+</dependency>
+
+<dependency>
+	<groupId>org.springframework.cloud</groupId>
+	<artifactId>spring-cloud-starter-sleuth</artifactId>
 </dependency>	
 ```
 * For gradle add following in [savings-accounts-service/build.gradle](savings-accounts-service/build.gradle)
@@ -274,8 +293,9 @@ dependencyManagement {
 }
 
 compile 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
-    compile 'org.springframework.cloud:spring-cloud-starter-openfeign'
-    compile 'org.springframework.cloud:spring-cloud-starter-netflix-ribbon'
+compile 'org.springframework.cloud:spring-cloud-starter-openfeign'
+compile 'org.springframework.cloud:spring-cloud-starter-netflix-ribbon'
+compile 'org.springframework.cloud:spring-cloud-starter-sleuth'
 ```
 * Refer dependencies in [accounts-service/pom.xml](accounts-service/pom.xml) or [savings-accounts-service/build.gradle](savings-accounts-service/build.gradle)
 * Add following properties in [accounts-service/bootstrap.yml](accounts-service/src/main/resources/bootstrap.yml) to make as eureka client
@@ -295,6 +315,14 @@ eureka:
 	* /savings-accounts-service/v2/accounts
 * Other Classes
 	* Config class - [AppConfig.java](accounts-service/src/main/java/com/accounts/service/config/AppConfig.java)
+		* Add following Bean 
+```
+import brave.sampler.Sampler;
+@Bean
+public Sampler defaultSampler() {
+	return Sampler.ALWAYS_SAMPLE;
+}
+```
 	* Controller class - [AppController.java](accounts-service/src/main/java/com/accounts/service/controller/AppController.java)
 	* Model classes - [accounts-service/src/main/java/com/accounts/service/model](accounts-service/src/main/java/com/accounts/service/model)
 
@@ -329,6 +357,11 @@ gradle init --type pom
 <dependency>
 	<groupId>org.springframework.cloud</groupId>
 	<artifactId>spring-cloud-starter-netflix-zuul</artifactId>
+</dependency>
+
+<dependency>
+	<groupId>org.springframework.cloud</groupId>
+	<artifactId>spring-cloud-starter-sleuth</artifactId>
 </dependency>	
 ```
 * For gradle add following dependencies in [zuul-gateway/build.gradle](zuul-gateway/build.gradle)
@@ -339,6 +372,7 @@ ext {
 
 compile 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 compile 'org.springframework.cloud:spring-cloud-starter-netflix-zuul'
+compile 'org.springframework.cloud:spring-cloud-starter-sleuth'
 ```
 * Add `@EnableZuulProxy`, `@EnableEurekaClient` annotations in main class [zuul-gateway/App.java](zuul-gateway/src/main/java/com/zuul/gateway/App.java)
 * Create LoggingFilter class extends com.netflix.zuul.ZuulFilter - [zuul-gateway/LoggingFilter.java](zuul-gateway/src/main/java/com/zuul/gateway/filter/LoggingFilter.java)
@@ -351,6 +385,15 @@ eureka:
   instance:
     prefer-ip-address: true  
 ```
+* Create config class - [AppConfig.java](zuul-gateway/src/main/java/com/zuul/gateway/config/AppConfig.java)
+	* Add following bean
+```
+import brave.sampler.Sampler;
+@Bean
+public Sampler defaultSampler() {
+	return Sampler.ALWAYS_SAMPLE;
+}
+```	
 ## Run application
 * Start `config-server` - [App.java](config-server/src/main/java/com/config/server/App.java)
 * Start `discovery-server` - [App.java](discovery-server/src/main/java/com/discovery/server/App.java)
@@ -365,3 +408,5 @@ eureka:
 * Hit APIs in [spring-cloud-config-client-feign-ribbon-eureka-zuul-sleuth-zipkin.postman_collection.json](files/spring-cloud-config-client-feign-ribbon-eureka-zuul-sleuth-zipkin.postman_collection.json)
 	* zuul-gateway folder in postman collection
 		* Hit any API and check `zuul-gateway` console log - should be able to request URI in log
+* Check the console of `zuul-gateway`, `accounts-service`, `savings-accounts-service`
+	* we can see log being generated with unique id
