@@ -29,7 +29,7 @@
 	* https://github.com/avinashbabudonthu/micro-services/tree/master/spring-cloud-config-client-feign-ribbon-eureka
 
 ## API
-* Import [spring-cloud-config-client-feign-ribbon-eureka.postman_collection.json](files/spring-cloud-config-client-feign-ribbon-eureka.postman_collection.json) to local postman
+* Import [spring-cloud-config-client-feign-ribbon-eureka-zuul.postman_collection.json](files/spring-cloud-config-client-feign-ribbon-eureka-zuul.postman_collection.json)
 
 ## Config Server
 * Create project using maven command
