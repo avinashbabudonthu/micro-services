@@ -29,7 +29,7 @@
 	* https://github.com/avinashbabudonthu/micro-services/tree/master/spring-cloud-config-client-feign-ribbon-eureka
 
 ## API
-* Import [spring-cloud-config-client-feign-ribbon-eureka-zuul.postman_collection.json](files/spring-cloud-config-client-feign-ribbon-eureka-zuul.postman_collection.json)
+* Import [spring-cloud-config-client-feign-ribbon-eureka-zuul-sleuth-zipkin.postman_collection.json](files/spring-cloud-config-client-feign-ribbon-eureka-zuul-sleuth-zipkin.postman_collection.json)
 
 ## Config Server
 * Create project using maven command
@@ -362,6 +362,6 @@ eureka:
 	* Run [savings-accounts-service/savings-accounts-service-9001.bat](savings-accounts-service/savings-accounts-service-9001.bat)
 	* Run [savings-accounts-service/savings-accounts-service-9002.bat](savings-accounts-service/savings-accounts-service-9002.bat)
 * Start `accounts-service` - [App.java](accounts-service/src/main/java/com/accounts/service/App.java)
-* Hit APIs in [spring-cloud-config-client-feign-ribbon-eureka-zuul.postman_collection.json](files/spring-cloud-config-client-feign-ribbon-eureka-zuul.postman_collection.json)
+* Hit APIs in [spring-cloud-config-client-feign-ribbon-eureka-zuul-sleuth-zipkin.postman_collection.json](files/spring-cloud-config-client-feign-ribbon-eureka-zuul-sleuth-zipkin.postman_collection.json)
 	* zuul-gateway folder in postman collection
 		* Hit any API and check `zuul-gateway` console log - should be able to request URI in log

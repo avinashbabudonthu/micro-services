@@ -87,3 +87,4 @@ Zipkin Distributed Tracing Server 	| 9411
 	* https://github.com/avinashbabudonthu/micro-services/tree/master/spring-cloud-config-client-feign-ribbon-eureka
 	
 ## Sleuth
+* Assign unique id to a request so we that we can trace it across microservices
