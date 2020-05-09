@@ -97,3 +97,9 @@ Zipkin Distributed Tracing Server 	| 9411
 	* ELK Stack
 	* Kibana
 * Zipkin server connects to database in backend
+
+## Spring cloud Bus
+* If we have multiple instances of multiple microservices running. All connected to config server. If any configuration changed then how that configuration will be applied to running instances of that microservices for that environment.  For this only we need Spring Cloud Bus
+* We can implement Spring Cloud Bus using 
+	* Kafka
+	* Rabbit MQ
