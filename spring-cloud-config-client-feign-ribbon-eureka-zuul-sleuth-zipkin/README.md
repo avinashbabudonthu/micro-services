@@ -19,6 +19,11 @@
 * Create Zuul API gateway and implement logging
 	* All requests should go through API gateway and print log
 	* [Accounts Service](accounts-service) to [Savings Accounts Service](savings-accounts-service) al should go through API gateway
+* Enable Sleuth in `zuul-gateway`, `saving-accounts-service`, `accounts-service`
+* Install Rabbit MQ
+* Put `zuul-gateway`, `saving-accounts-service`, `accounts-service` logs in Rabbit MQ
+* `zipkin-distributed-tracing-server` listening on Rabbit MQ
+* zipkin-distributed-tracing-server` takes logs from Rabbit MQ to in memory DB
 
 ## Pre Requisite
 * Go through below examples
@@ -190,6 +195,18 @@ gradle init --type pom
 	<artifactId>spring-cloud-starter-sleuth</artifactId>
 </dependency>
 ```
+* For maven add following to connect to zipkin and rabbit mq
+```
+<dependency>
+	<groupId>org.springframework.cloud</groupId>
+	<artifactId>spring-cloud-starter-zipkin</artifactId>
+</dependency>
+
+<dependency>
+	<groupId>org.springframework.amqp</groupId>
+	<artifactId>spring-rabbit</artifactId>
+</dependency>
+```
 * For gradle - add following in [savings-accounts-service/build.gradle](savings-accounts-service/build.gradle)
 ```
 ext {
@@ -205,6 +222,11 @@ dependencyManagement {
 compile 'org.springframework.cloud:spring-cloud-config-client'
 compile 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 compile 'org.springframework.cloud:spring-cloud-starter-sleuth'
+```
+* For gradle add following to connect to zipkin and rabbit mq
+```
+compile 'org.springframework.cloud:spring-cloud-starter-zipkin'
+compile 'org.springframework.amqp:spring-rabbit'
 ```
 * Refer full dependencies in [savings-accounts-service/pom.xml](savings-accounts-service/pom.xml) or [savings-accounts-service/build.gradle](savings-accounts-service/build.gradle)
 * Add following properties in [savings-accounts-service/bootstrap.yml](savings-accounts-service/src/main/resources/bootstrap.yml) to make as spring cloud config client
@@ -280,6 +302,19 @@ gradle init --type pom
 	<artifactId>spring-cloud-starter-sleuth</artifactId>
 </dependency>	
 ```
+* For maven add following to connect to zipkin and rabbit mq
+```
+<dependency>
+	<groupId>org.springframework.cloud</groupId>
+	<artifactId>spring-cloud-starter-zipkin</artifactId>
+</dependency>
+
+<dependency>
+	<groupId>org.springframework.amqp</groupId>
+	<artifactId>spring-rabbit</artifactId>
+</dependency>
+```
+
 * For gradle add following in [savings-accounts-service/build.gradle](savings-accounts-service/build.gradle)
 ```
 ext {
@@ -296,6 +331,11 @@ compile 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 compile 'org.springframework.cloud:spring-cloud-starter-openfeign'
 compile 'org.springframework.cloud:spring-cloud-starter-netflix-ribbon'
 compile 'org.springframework.cloud:spring-cloud-starter-sleuth'
+```
+* For gradle add following to connect to zipkin and rabbit mq
+```
+compile 'org.springframework.cloud:spring-cloud-starter-zipkin'
+compile 'org.springframework.amqp:spring-rabbit'
 ```
 * Refer dependencies in [accounts-service/pom.xml](accounts-service/pom.xml) or [savings-accounts-service/build.gradle](savings-accounts-service/build.gradle)
 * Add following properties in [accounts-service/bootstrap.yml](accounts-service/src/main/resources/bootstrap.yml) to make as eureka client
@@ -364,6 +404,18 @@ gradle init --type pom
 	<artifactId>spring-cloud-starter-sleuth</artifactId>
 </dependency>	
 ```
+* For maven add following to connect to zipkin and rabbit mq
+```
+<dependency>
+	<groupId>org.springframework.cloud</groupId>
+	<artifactId>spring-cloud-starter-zipkin</artifactId>
+</dependency>
+
+<dependency>
+	<groupId>org.springframework.amqp</groupId>
+	<artifactId>spring-rabbit</artifactId>
+</dependency>
+```
 * For gradle add following dependencies in [zuul-gateway/build.gradle](zuul-gateway/build.gradle)
 ```
 ext {
@@ -373,6 +425,11 @@ ext {
 compile 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 compile 'org.springframework.cloud:spring-cloud-starter-netflix-zuul'
 compile 'org.springframework.cloud:spring-cloud-starter-sleuth'
+```
+* For gradle add following to connect to zipkin and rabbit mq
+```
+compile 'org.springframework.cloud:spring-cloud-starter-zipkin'
+compile 'org.springframework.amqp:spring-rabbit'
 ```
 * Add `@EnableZuulProxy`, `@EnableEurekaClient` annotations in main class [zuul-gateway/App.java](zuul-gateway/src/main/java/com/zuul/gateway/App.java)
 * Create LoggingFilter class extends com.netflix.zuul.ZuulFilter - [zuul-gateway/LoggingFilter.java](zuul-gateway/src/main/java/com/zuul/gateway/filter/LoggingFilter.java)
@@ -393,8 +450,30 @@ import brave.sampler.Sampler;
 public Sampler defaultSampler() {
 	return Sampler.ALWAYS_SAMPLE;
 }
-```	
-## Run application
+```
+
+## Zipkin server
+* Open URL - https://zipkin.io/pages/quickstart
+* Click on `latest release` link in `Java` section. This downloads executable jar file
+* Execute following command from zipkin executable jar location
+```
+java -jar zipkin-server-*-exec.jar
+```
+* Open URL - http://localhost:9411 (or) http://localhost:9411/zipkin
+* Start zipkin with Rabbit MQ connection. Start Rabbit MQ in local and then execute following commands
+```
+SET RABBIT_URI=amqp://localhost
+java -jar zipkin-server-*-exec.jar
+```
+
+## Run application - Stop everything running and start again all in the following order. Give warm up time afer starting
+* Start Rabbit MQ - https://github.com/avinashbabudonthu/jms/blob/master/rabbit-mq/notes.md#install-rabbit-mq
+	* Open URL - http://localhost:15672/
+* Start zipkin server. Execute following command from zipkin executable jar location. After starting open URL - http://localhost:9411
+```
+SET RABBIT_URI=amqp://localhost
+java -jar zipkin-server-*-exec.jar
+```
 * Start `config-server` - [App.java](config-server/src/main/java/com/config/server/App.java)
 * Start `discovery-server` - [App.java](discovery-server/src/main/java/com/discovery/server/App.java)
 	* Check url - http://localhost:8761
@@ -410,3 +489,5 @@ public Sampler defaultSampler() {
 		* Hit any API and check `zuul-gateway` console log - should be able to request URI in log
 * Check the console of `zuul-gateway`, `accounts-service`, `savings-accounts-service`
 	* we can see log being generated with unique id
+* Go to `zipkin` URL http://localhost:9411
+![picture](logs-in-zipkin.jpg)

@@ -34,6 +34,14 @@ dependencies {
     compile 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 	compile 'org.springframework.cloud:spring-cloud-starter-sleuth'
 	
+	// Spring Boot Release <= 2.1.*
+	// compile 'org.springframework.cloud:spring-cloud-sleuth-zipkin'
+    // compile 'org.springframework.cloud:spring-cloud-starter-bus-amqp'
+    
+    // Spring Boot Release >= 2.1.*
+    compile 'org.springframework.cloud:spring-cloud-starter-zipkin'
+    compile 'org.springframework.amqp:spring-rabbit'
+	
     compile "org.projectlombok:lombok:1.18.4"
     compileOnly "org.projectlombok:lombok:1.18.4"
     testCompileOnly "org.projectlombok:lombok:1.18.4"
