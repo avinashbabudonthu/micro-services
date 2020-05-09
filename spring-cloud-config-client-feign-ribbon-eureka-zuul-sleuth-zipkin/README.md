@@ -460,7 +460,7 @@ public Sampler defaultSampler() {
 java -jar zipkin-server-*-exec.jar
 ```
 * Open URL - http://localhost:9411 (or) http://localhost:9411/zipkin
-* Start zipkin with Rabbit MQ connection. Start Rabbit MQ in local and then execute following commands
+* Start zipkin with Rabbit MQ connection. Start Rabbit MQ - https://github.com/avinashbabudonthu/jms/blob/master/rabbit-mq/notes.md#install-rabbit-mq. Execute following command after Rabbit MQ started
 ```
 SET RABBIT_URI=amqp://localhost
 java -jar zipkin-server-*-exec.jar
