@@ -4,6 +4,10 @@ plugins {
     id 'java'
 }
 
+ext {
+	set('springCloudVersion', "Greenwich.SR3")
+}
+
 group = 'com.student.service'
 version = '1.0'
 
@@ -15,11 +19,18 @@ repositories {
     mavenCentral()
 }
 
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
+
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-devtools'
-    compile 'org.springframework.cloud:spring-cloud-config-server:2.1.7.RELEASE'
+    compile 'org.springframework.cloud:spring-cloud-config-server'
+    compile 'org.springframework.cloud:spring-cloud-starter-bus-amqp'
 
     compile "org.projectlombok:lombok:1.18.4"
     compileOnly "org.projectlombok:lombok:1.18.4"

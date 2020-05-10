@@ -8,36 +8,12 @@
 * Start multiple instances of student service
 * Change in the cloud config properties should reflect in all instances student service
 
+## Solution
+* In this example we are using Spring Cloud Bus with Rabbit MQ. We an use spring Cloud Bus with Kafka also
+	* Refer Rabbit MQ installation and running in local - https://github.com/avinashbabudonthu/jms/blob/master/rabbit-mq/notes.md#install-rabbit-mq
+
 ## Postman Collection
 * Import postman collection json to local postman - [spring-cloud-config-server-client-cloud-bus.postman_collection.json](files/spring-cloud-config-server-client-cloud-bus.postman_collection.json)
-
-## Student Service
-* Project folder - [student-service](student-service)
-* Create project using maven Command
-```
-mvn archetype:generate -DgroupId=com.student.service -DartifactId=student-service -Dversion=1.0 -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
-```
-* Add gradle. Execute from `student-service` folder
-```
-gradle init --type pom
-```
-* Main class - [App.java](student-service/src/main/java/com/student/service/App.java)
-* Add spring-boot, devtools, actuator, `spring-cloud-config-client`, `spring-boot-configuration-processor` dependencies. Refer [pom.xml](student-service/pom.xml) (or) [build.gradle](student-service/build.gradle)
-* Create [student-service/bootstrap.yml](student-service/src/main/resources/bootstrap.yml) file. Configure following properties
-```
-spring.application.name
-```	
-* Create [Student.java](student-service/src/main/java/com/student/service/model/Student.java)
-* Create [StudentList.java](student-service/src/main/java/com/student/service/model/StudentList.java)
-	* Declare `@ConfigurationProperties(prefix = "students")` at class level to enable to declare values for properties of this class in properties/yaml file
-* Create [AppConfig.java](student-service/src/main/java/com/student/service/config/AppConfig.java). This class to enable configuring [StudentList.java](student-service/src/main/java/com/student/service/model/StudentList.java) class properties in properties/yaml file
-* Create [AppController.java](student-service/src/main/java/com/student/service/controller/AppController.java)
-	* Inject [StudentList.java](student-service/src/main/java/com/student/service/model/StudentList.java)
-	* Write `/students` API - `findAllStudents()`
-* Start `student-service` applicaiton
-	* Run [student-service/student-service-9000.bat](student-service/student-service-9000.bat)
-	* Run [student-service/student-service-9001.bat](student-service/student-service-9001.bat)
-	* Run [student-service/student-service-9002.bat](student-service/student-service-9002.bat)
 
 ## Config Server
 * Project folder - [config-server](config-server)
@@ -80,14 +56,47 @@ spring.application.name
 
 ![picture](images/config-server-link-to-local-git-repo.jpg)
 
-## Connect Student Service to Config Server
-* Open [student-service/bootstrap.yml](student-service/src/main/resources/bootstrap.yml) file. Configure following properties
-	* spring.cloud.config.uri: http://localhost:8888
-	* spring.profiles.active: test
+## Student Service
+* Project folder - [student-service](student-service)
+* Create project using maven Command
+```
+mvn archetype:generate -DgroupId=com.student.service -DartifactId=student-service -Dversion=1.0 -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+```
+* Add gradle. Execute from `student-service` folder
+```
+gradle init --type pom
+```
+* Main class - [App.java](student-service/src/main/java/com/student/service/App.java)
+* Add spring-boot, devtools, actuator, `spring-cloud-config-client`, `spring-boot-configuration-processor` dependencies. Refer [pom.xml](student-service/pom.xml) (or) [build.gradle](student-service/build.gradle)
+* Create [student-service/bootstrap.yml](student-service/src/main/resources/bootstrap.yml) file. Configure following properties
+```
+spring:
+  application.name: student-service
+  cloud.config.uri: http://localhost:8888
+  profiles.active: test
+  
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - '*'
+```	
+* Create [Student.java](student-service/src/main/java/com/student/service/model/Student.java)
+* Create [StudentList.java](student-service/src/main/java/com/student/service/model/StudentList.java)
+	* Declare `@ConfigurationProperties(prefix = "students")` at class level to enable to declare values for properties of this class in properties/yaml file
+* Create [AppConfig.java](student-service/src/main/java/com/student/service/config/AppConfig.java). This class to enable configuring [StudentList.java](student-service/src/main/java/com/student/service/model/StudentList.java) class properties in properties/yaml file
+* Create [AppController.java](student-service/src/main/java/com/student/service/controller/AppController.java)
+	* Inject [StudentList.java](student-service/src/main/java/com/student/service/model/StudentList.java)
+	* Write `/students` API - `findAllStudents()`
+
+## Run Application
 * Start `config-server`. Run [config-server/App.java](config-server/src/main/java/com/config/server/App.java)
-* Start `student-service`. Run [student-service/App.java](student-service/src/main/java/com/student/service/App.java)
-* Access API - `example-1/student-service/app/find-all-students` in postman collection - [example-1.postman_collection.json](files/example-1.postman_collection.json)
-	* http://localhost:9000/students
+* Start `student-service` applicaiton - 3 instances with following batch files
+	* Run [student-service/student-service-9000.bat](student-service/student-service-9000.bat)
+	* Run [student-service/student-service-9001.bat](student-service/student-service-9001.bat)
+	* Run [student-service/student-service-9002.bat](student-service/student-service-9002.bat)
+* Import postman collection to local postman - [spring-cloud-config-server-client-cloud-bus.postman_collection.json](files/spring-cloud-config-server-client-cloud-bus.postman_collection.json)
 * Value of `test' profile from [student-service.yml](https://github.com/avinashbabudonthu/spring-cloud-config-server-properties/blob/master/student-service.yml)
 ```
 {
@@ -101,50 +110,6 @@ spring.application.name
             "id": 6,
             "name": "jeni",
             "course": "spring-cloud"
-        }
-    ]
-}
-```
-* Stop `student-service`
-* Change `spring.profiles.active` property value from `test` to 'dev` in [student-service/bootstrap.yml](student-service/src/main/resources/bootstrap.yml)
-* Start `student-service`. Run [App.java](student-service/src/main/java/com/student/service/App.java)
-* Access API - `example-1/student-service/app/find-all-students` in postman collection - [example-1.postman_collection.json](files/example-1.postman_collection.json)
-	* http://localhost:9000/students
-* Value of `dev' profile from [student-service.yml](https://github.com/avinashbabudonthu/spring-cloud-config-server-properties/blob/master/student-service.yml)	
-```
-{
-    "studentList": [
-        {
-            "id": 3,
-            "name": "john",
-            "course": "jee"
-        },
-        {
-            "id": 4,
-            "name": "jane",
-            "course": "spring-boot"
-        }
-    ]
-}
-```
-* Stop `student-service`
-* Change `spring.profiles.active` property value from `dev` to 'default` in [student-service/bootstrap.yml](student-service/src/main/resources/bootstrap.yml)
-* Start `student-service`. Run [App.java](student-service/src/main/java/com/student/service/App.java)
-* Access API - `example-1/student-service/app/find-all-students` in postman collection - [example-1.postman_collection.json](files/example-1.postman_collection.json)
-	* http://localhost:9000/students
-* Value of `default' profile from [student-service.yml](https://github.com/avinashbabudonthu/spring-cloud-config-server-properties/blob/master/student-service.yml)
-```
-{
-    "studentList": [
-        {
-            "id": 1,
-            "name": "jack",
-            "course": "java"
-        },
-        {
-            "id": 2,
-            "name": "jill",
-            "course": "spring"
         }
     ]
 }
