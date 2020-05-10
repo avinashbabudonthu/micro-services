@@ -1,4 +1,4 @@
-# Microservice Spring Cloud Config Server Config Client Cluoud Bus
+# Microservice Spring Cloud Config Server Config Client Cluoud Bus Rabbit MQ
 
 ## Requirement
 * Create student service spring boot application
@@ -91,12 +91,16 @@ management:
 	* Write `/students` API - `findAllStudents()`
 
 ## Run Application
+* Start Rabbit MQ - https://github.com/avinashbabudonthu/jms/blob/master/rabbit-mq/notes.md#install-rabbit-mq
 * Start `config-server`. Run [config-server/App.java](config-server/src/main/java/com/config/server/App.java)
 * Start `student-service` applicaiton - 3 instances with following batch files
 	* Run [student-service/student-service-9000.bat](student-service/student-service-9000.bat)
 	* Run [student-service/student-service-9001.bat](student-service/student-service-9001.bat)
 	* Run [student-service/student-service-9002.bat](student-service/student-service-9002.bat)
 * Import postman collection to local postman - [spring-cloud-config-server-client-cloud-bus.postman_collection.json](files/spring-cloud-config-server-client-cloud-bus.postman_collection.json)
+	* student-service/find-all-students-9000
+	* student-service/find-all-students-9001
+	* student-service/find-all-students-9002
 * Value of `test' profile from [student-service.yml](https://github.com/avinashbabudonthu/spring-cloud-config-server-properties/blob/master/student-service.yml)
 ```
 {
@@ -114,3 +118,11 @@ management:
     ]
 }
 ```
+* Change properties of `test' profile from [student-service.yml](https://github.com/avinashbabudonthu/spring-cloud-config-server-properties/blob/master/student-service.yml)
+	* Commit and Push
+* Hit following API in postman collection
+	* student-service/actuator-bus-refresh
+* Now access API in post collection. Should be able to see new changes in all instances without restarting any one of them
+	* student-service/find-all-students-9000
+	* student-service/find-all-students-9001
+	* student-service/find-all-students-9002
