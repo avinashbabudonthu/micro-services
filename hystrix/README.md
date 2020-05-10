@@ -4,13 +4,6 @@
 * If microservice fails return default response using Hystrix
 * This acts as fault tolerance
 
-## Solution
-* In this example we are using Spring Cloud Bus with Rabbit MQ. We an use spring Cloud Bus with Kafka also
-	* Refer Rabbit MQ installation and running in local - https://github.com/avinashbabudonthu/jms/blob/master/rabbit-mq/notes.md#install-rabbit-mq
-
-## Postman Collection
-* Import postman collection json to local postman - [spring-cloud-config-server-client-cloud-bus.postman_collection.json](files/spring-cloud-config-server-client-cloud-bus.postman_collection.json)
-
 ## Student Service
 * Project folder - [student-service](student-service)
 * Create project using maven Command
