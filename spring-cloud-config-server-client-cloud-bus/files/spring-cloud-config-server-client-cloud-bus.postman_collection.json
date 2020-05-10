@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "c3276c6b-8ef9-4068-9019-0c3db7729f0e",
-		"name": "example-1",
+		"_postman_id": "e950d2ba-792d-4ce7-8f61-4b213ce08bb3",
+		"name": "spring-cloud-config-server-client-cloud-bus",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
