@@ -103,3 +103,7 @@ Zipkin Distributed Tracing Server 	| 9411
 * We can implement Spring Cloud Bus using 
 	* Kafka
 	* Rabbit MQ
+	
+## Microservices Architecture
+### References
+* https://cloudacademy.com/blog/microservices-architecture-challenge-advantage-drawback/
