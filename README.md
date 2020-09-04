@@ -34,3 +34,6 @@
 * https://www.tutorialspoint.com/microservice_architecture/index.htm
 * https://dzone.com/articles/buiding-microservice-using-springboot-and-docker
 * https://dzone.com/articles/buiding-microservice-using-spring-boot-and-docker?fromrel=true
+
+## Youtube
+* https://www.youtube.com/watch?v=SkE0-i6rkFA&feature=youtu.be
