@@ -8,7 +8,7 @@
 * Consume REST API from zuul gateway
 * Load balancing should be done automatically using zuul as and when we start new instances of microservice
 
-## Zuul Discovery Server
+## Eureka Discovery Server
 * Maven Command
 ```
 mvn archetype:generate -DgroupId=com.discovery.server -DartifactId=discovery-server -Dversion=1.0 -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
@@ -18,6 +18,18 @@ mvn archetype:generate -DgroupId=com.discovery.server -DartifactId=discovery-ser
 	* [App.java](src/main/java/com/discovery/server/App.java)
 	* [application.yml](src/main/resources/application.yml)
 * Declare `@EnableEurekaServer` annoation on [App.java](src/main/java/com/discovery/server/App.java) to make this application eureka server
+
+## Zuul Gateway
+* Maven Command
+```
+mvn archetype:generate -DgroupId=com.zuul.gateway -DartifactId=zuul-gateway -Dversion=1.0 -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+```
+* Files
+	* [pom.xml](pom.xml)
+	* [App.java](src/main/java/com/app/App.java)
+	* [application.yml](src/main/resources/application.yml)
+	* Declare `@EnableZuulProxy` annoation on [App.java](src/main/java/com/app/App.java) to make this application as zuul server
+	* Declare `@EnableEurekaClient` annotation on [App.java](src/main/java/com/app/App.java) to make this application as eureka client
 
 ## Account Service
 * Maven Command
@@ -31,18 +43,6 @@ mvn archetype:generate -DgroupId=com.accounts.service -DartifactId=accounts-serv
 	* [AccountModel.java](src/main/java/com/app/model/AccountModel.java)
 * Declare `@EnableEurekaClient` annotaiton on [App.java](src/main/java/com/app/App.java) to declare this application as eureka client
 * Write Rest API in [AppController.java](src/main/java/com/app/controller/AppController.java) which we consume from zuul gateway
-
-## Zuul Gateway
-* Maven Command
-```
-mvn archetype:generate -DgroupId=com.zuul.gateway -DartifactId=zuul-gateway -Dversion=1.0 -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
-```
-* Files
-	* [pom.xml](pom.xml)
-	* [App.java](src/main/java/com/app/App.java)
-	* [application.yml](src/main/resources/application.yml)
-	* Declare `@EnableZuulProxy` annoation on [App.java](src/main/java/com/app/App.java) to make this application as zuul server
-	* Declare `@EnableEurekaClient` annotation on [App.java](src/main/java/com/app/App.java) to make this application as eureka client
 
 ## API
 * Postman collection
