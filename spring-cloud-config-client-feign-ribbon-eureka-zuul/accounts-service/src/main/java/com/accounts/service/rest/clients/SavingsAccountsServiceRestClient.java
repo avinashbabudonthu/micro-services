@@ -7,7 +7,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 
-@FeignClient(name = "zuul-gateway")
+@FeignClient(name = "savings-accounts-service")
 @RibbonClient(name = "savings-accounts-service")
 public interface SavingsAccountsServiceRestClient {
 
