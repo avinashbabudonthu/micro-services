@@ -57,3 +57,5 @@ mvn archetype:generate -DgroupId=com.accounts.service -DartifactId=accounts-serv
 	* Run [accounts-service/accounts-service-9002.bat](accounts-service/accounts-service-9002.bat)
 * Start `zuul` gateway
 	* Run [zuul-gateway/App.java](zuul-gateway/src/main/java/com/app/App.java)
+
+## Deploying to AWS EC2 instance
