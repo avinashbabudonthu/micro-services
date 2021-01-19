@@ -26,5 +26,5 @@
 * Go to `Tasks` tab
 * click link in `Task` column. We can see the details like status etc in this screen
 * copy `Public IP` and paste in another tab
-* Sample app output is as follows
+* Sample app output is as follows\
 ![picture](pictures/sample-app-output.jpg)
